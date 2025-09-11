@@ -16,6 +16,11 @@
       background: #f9fafc;
       color: #333;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden; /* right side scroll रोकना */
+      overflow-y: auto;   /* normal vertical scroll */
     }
 
     header {
@@ -25,6 +30,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     header img {
@@ -43,10 +50,13 @@
     }
 
     .careers-section {
+      flex: 1;
       padding: 4rem 5%;
       text-align: center;
       max-width: 800px;
       margin: auto;
+      position: relative;
+      z-index: 2;
     }
 
     .careers-section h1 {
@@ -70,7 +80,46 @@
       color: #fff;
       text-align: center;
       padding: 1.5rem;
-      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Logo container at bottom-right */
+    .logo-container {
+      position: fixed;       /* viewport fix */
+      bottom: 40px;          /* पहले 20px → अब 40px ऊपर */
+      right: 0;              /* right corner */
+      width: 350px;          /* visible area */
+      height: 350px;         /* visible area */
+      overflow: hidden;      /* बाहर का हिस्सा कभी न दिखे */
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .bg-logo-wrapper {
+      position: absolute;
+      bottom: -50px; /* crop effect */
+      right: -50px;  /* crop effect */
+      width: 400px;
+      height: 400px;
+    }
+
+    .bg-logo-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .bg-logo-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Gradient overlay reversed:
+         top white → bottom transparent */
+      background: linear-gradient(to bottom, rgba(249,250,252,1), rgba(249,250,252,0.2));
     }
   </style>
 </head>
@@ -95,6 +144,13 @@
       We will update soon once we have new openings.
     </p>
   </section>
+
+  <!-- Logo Container (fixed to viewport, cropped, 40px up) -->
+  <div class="logo-container">
+    <div class="bg-logo-wrapper">
+      <img src="Logo/SVG/favBlack.svg" alt="Arzenics Fav Logo">
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
