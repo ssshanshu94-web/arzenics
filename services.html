@@ -21,6 +21,7 @@
       flex-direction: column;
       overflow-x: hidden;
       overflow-y: auto;
+      position: relative;
     }
 
     header {
@@ -105,25 +106,24 @@
       text-align: center;
       padding: 1.5rem;
       position: relative;
-      z-index: 2;
+      z-index: 3; /* footer सबसे ऊपर रहेगा */
     }
 
-    /* Logo container at bottom-right */
+    /* 🔹 Logo behind footer (cropped by footer bottom) */
     .logo-container {
       position: fixed;
-      bottom: 40px;     /* ऊपर उठाया */
+      bottom: 0;     /* viewport bottom */
       right: 0;
       width: 350px;
       height: 350px;
-      overflow: hidden;
-      z-index: 1;
+      z-index: 1;    /* footer से पीछे */
       pointer-events: none;
     }
 
     .bg-logo-wrapper {
       position: absolute;
-      bottom: -50px; /* crop effect */
-      right: -50px;  /* crop effect */
+      bottom: -50px; /* crop bottom */
+      right: -50px;  /* crop right */
       width: 400px;
       height: 400px;
     }
@@ -141,7 +141,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* Gradient overlay reversed */
       background: linear-gradient(to bottom, rgba(249,250,252,1), rgba(249,250,252,0.2));
     }
   </style>
@@ -192,7 +191,7 @@
     </div>
   </section>
 
-  <!-- Logo Container (fixed to viewport, cropped, 40px up) -->
+  <!-- 🔹 Logo behind footer -->
   <div class="logo-container">
     <div class="bg-logo-wrapper">
       <img src="Logo/SVG/favBlack.svg" alt="Arzenics Fav Logo">
