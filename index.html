@@ -4,258 +4,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arzenics - IT Services Company</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Arzenics provides IT services including software development, IT consulting, project management, and cloud solutions.">
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" href="Logo/SVG/favWhite.png">
+  <link rel="icon" type="image/svg+xml" href="Logo/SVG/favWhite.svg">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Roboto", sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Roboto", sans-serif; }
 
-    html, body {
-      height: 100%;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      color: #333;
-      line-height: 1.6;
-      background: #f9fafc;
-      font-size: 18px;
-    }
+    body { display: flex; flex-direction: column; color: #333; line-height: 1.6; background: #f9fafc; font-size: 18px; }
 
     /* Header */
     header {
-      background: #0a3d62;
-      color: #fff;
-      padding: 1rem 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transition: all 0.3s ease;
+      background: #0a3d62; color: #fff; padding: 1rem 6%;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000; transition: all 0.3s ease;
     }
-
-    header img {
-      height: 60px;
-      animation: glowEffect 6s infinite ease-in-out;
-      transition: all 0.3s ease;
-    }
-
-    nav a {
-      color: #fff;
-      margin-left: 25px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Shrinked Header */
-    header.shrink {
-      padding: 0.5rem 6%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    header.shrink img {
-      height: 40px;
-    }
+    header img { height: 60px; animation: glowEffect 6s infinite ease-in-out; transition: all 0.3s ease; }
+    nav a { color: #fff; margin-left: 25px; text-decoration: none; font-weight: 500; font-size: 1.1rem; }
+    nav a:hover { text-decoration: underline; }
+    header.shrink { padding: 0.5rem 6%; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    header.shrink img { height: 40px; }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(rgba(10,61,98,0.9), rgba(60,99,130,0.9)),
-                   center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 8rem 2rem;
+      background: linear-gradient(rgba(10,61,98,0.9), rgba(60,99,130,0.9));
+      color: #fff; text-align: center; padding: 8rem 2rem;
     }
+    .hero h1 { font-size: 3rem; margin-bottom: 1.5rem; font-weight: bold; }
+    .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      font-weight: bold;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2.5rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    /* ✅ Button */
     .btn {
-      position: relative;
-      display: inline-block;
-      padding: 1rem 2rem;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      color: #0a3d62;
-      background: #fff;
-      overflow: hidden;
-      font-size: 1.1rem;
+      position: relative; display: inline-block; padding: 1rem 2rem;
+      border-radius: 30px; font-weight: bold; text-decoration: none;
+      color: #0a3d62; background: #fff; overflow: hidden;
+      font-size: 1.1rem; transition: transform 0.3s ease, color 0.3s ease;
     }
-
-    .btn svg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      border-radius: 30px;
-    }
-
+    .btn svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
     .btn rect {
-      fill: none;
-      stroke: #0a3d62;
-      stroke-width: 2;
-      rx: 30; ry: 30;
-      stroke-dasharray: 95 5;
-      transition: stroke-dashoffset 0.000 5s ease;
+      fill: none; stroke: #0a3d62; stroke-width: 2; stroke-dasharray: 400; stroke-dashoffset: 400;
+      transition: stroke-dashoffset 0.6s ease, stroke 0.3s ease;
     }
-
-    .btn:hover rect {
-      stroke-dashoffset: -10;
-      stroke: #fff;
-    }
+    .btn:hover rect { stroke-dashoffset: 0; stroke: #00e5ff; }
+    .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #2d2d2d; color: #2d2d2d; }
 
     /* Services */
-    .services {
-      flex: 1;
-      padding: 6rem 6%;
-      text-align: center;
+    .services { flex: 1; padding: 6rem 6%; text-align: center; }
+    .services h2 { margin-bottom: 3rem; font-size: 2.5rem; color: #0a3d62; }
+    .service-cards { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 800px; margin: 0 auto; }
+    .card { background: #fff; padding: 2.5rem; border-radius: 15px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: 0.3s; text-align: left; display: flex; flex-direction: column; gap: 0.5rem; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 10px 18px rgba(0,0,0,0.15); }
+    .card-icon { width: 40px; height: 24px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: center; gap: 3px; }
+
+    /* Bars */
+    .project-bars .bar { width: 4px; background: #0a3d62; border-radius: 2px; transform-origin: bottom; transform: scaleY(0); }
+    .project-bars .bar:nth-child(1) { height: 10px; }
+    .project-bars .bar:nth-child(2) { height: 14px; }
+    .project-bars .bar:nth-child(3) { height: 20px; }
+    .project-bars .bar:nth-child(4) { height: 12px; }
+    .project-bars .bar:nth-child(5) { height: 24px; }
+    @keyframes miniBounce {
+      0%{transform:scaleY(0);}55%{transform:scaleY(1.12);}70%{transform:scaleY(0.92);}
+      82%{transform:scaleY(1.05);}90%{transform:scaleY(0.98);}100%{transform:scaleY(1);}
     }
 
-    .services h2 {
-      margin-bottom: 3rem;
-      font-size: 2.5rem;
-      color: #0a3d62;
+    /* ✅ Clients Section (floating logos) */
+    .clients { padding: 5rem 6%; text-align: center; background: #fff; position: relative; overflow: visible; }
+    .clients h2 { font-size: 2.5rem; color: #0a3d62; margin-bottom: 3rem; }
+    .container { position: relative; width: 100%; height: 250px; overflow: visible; }
+    .logo { position: absolute; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.4s ease; }
+    .logo img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(100%); transition: filter 0.3s ease; }
+    .logo:hover img { filter: grayscale(0%); }
+    .logo:hover { transform: scale(1.05); }
+    .review-card {
+      position: absolute; background: #fff; border-radius: 10px; padding: 40px 14px 14px;
+      font-size: 13px; line-height: 1.4; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      opacity: 0; z-index: 10; max-width: 220px; text-align: center; animation: fadeIn 0.6s ease forwards;
     }
-
-    .service-cards {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+    .review-card strong { display: block; margin-top: 6px; font-size: 12px; color: #333; }
+    .review-card .founder-pic {
+      position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 60px; border-radius: 50%; border: 3px solid #fff;
+      overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      background: #eee; display: flex; justify-content: center; align-items: center;
     }
-
-    .card {
-      background: #fff;
-      padding: 2.5rem;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      transition: 0.3s;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
-    }
-
-    .card-icon {
-      width: 40px;
-      height: 24px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 3px;
-    }
-
-    .card h3 {
-      margin: 0;
-      color: #0a3d62;
-      font-size: 1.5rem;
-    }
-
-    .card p {
-      font-size: 1rem;
-    }
+    .review-card .founder-pic img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
 
     /* Footer */
-    footer {
-      background: #0a3d62;
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    footer .links {
-      margin: 1rem 0;
-    }
-
-    footer .links a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    footer .social {
-      margin-top: 1rem;
-    }
-
-    footer .social a {
-      margin: 0 10px;
-      font-size: 1.3rem;
-      color: #fff;
-      text-decoration: none;
-    }
+    footer { background: #0a3d62; color: #fff; text-align: center; padding: 2rem; }
+    footer .links { margin: 1rem 0; }
+    footer .links a { margin: 0 10px; color: #fff; text-decoration: none; font-size: 1rem; }
+    footer .social { margin-top: 1rem; }
+    footer .social a { margin: 0 10px; font-size: 1.3rem; color: #fff; text-decoration: none; }
 
     @keyframes glowEffect {
       0% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
       50% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.8)); }
       100% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
     }
-
-    /* ✅ Animated Bars (Project Management Icon) */
-    .card-icon .bar {
-      width: 4px;
-      background: #0a3d62;
-      border-radius: 2px;
-      transform-origin: bottom;
-      transform: scaleY(0);
-    }
-
-    /* Animate only when .animate class is added */
-    .card-icon.animate .bar {
-      animation: miniBounce 1.2s forwards;
-      animation-delay: 0.5s; /* 🔥 Base delay before bars start */
-    }
-
-    /* Heights (zig-zag) */
-    .card-icon .bar:nth-child(1) { height: 10px; }
-    .card-icon .bar:nth-child(2) { height: 14px; animation-delay: 0.6s; }
-    .card-icon .bar:nth-child(3) { height: 20px; animation-delay: 0.7s; }
-    .card-icon .bar:nth-child(4) { height: 12px; animation-delay: 0.8s; }
-    .card-icon .bar:nth-child(5) { height: 24px; animation-delay: 0.9s; }
-
-    @keyframes miniBounce {
-      0%   { transform: scaleY(0); }
-      55%  { transform: scaleY(1.12); }
-      70%  { transform: scaleY(0.92); }
-      82%  { transform: scaleY(1.05); }
-      90%  { transform: scaleY(0.98); }
-      100% { transform: scaleY(1); }
-    }
   </style>
 </head>
 <body>
   <header id="main-header">
     <img src="Logo/SVG/logo1.svg" alt="Arzenics Logo">
-    <nav>
+    <nav aria-label="Main navigation">
       <a href="#">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
@@ -265,7 +122,7 @@
   </header>
 
   <section class="hero">
-    <h2>Empowering Businesses with IT Solutions</h2>
+    <h1>Empowering Businesses with IT Solutions</h1>
     <p>We deliver software development, IT consulting, and project management services tailored to your business. Our goal is to help you scale efficiently and stay future-ready.</p>
     <a href="services.html" class="btn">
       Explore Services
@@ -277,7 +134,6 @@
   <section class="services" id="services">
     <h2>Our Services</h2>
     <div class="service-cards">
-      <!-- Software Dev -->
       <div class="card">
         <div class="card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,8 +144,6 @@
         <h3>Software Development</h3>
         <p>Custom web & mobile applications designed to meet your business needs.</p>
       </div>
-
-      <!-- IT Consulting -->
       <div class="card">
         <div class="card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,23 +154,15 @@
         <h3>IT Consulting</h3>
         <p>Expert advice to streamline processes and boost productivity.</p>
       </div>
-      
-      <!-- Project Management -->
-      <div class="card">
+      <div class="card" id="project-card">
         <div style="display: flex; align-items: center; gap: 8px;">
           <div class="card-icon project-bars">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
           </div>
           <h3>Project Management</h3>
         </div>
         <p>End-to-end project handling with agile and modern methodologies.</p>
       </div>
-
-      <!-- Cloud & DevOps -->
       <div class="card">
         <div class="card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -329,43 +175,43 @@
     </div>
   </section>
 
+  <!-- ✅ Clients Section -->
+  <section class="clients">
+    <h2>Our Clients</h2>
+    <div class="container"></div>
+  </section>
+
   <footer>
     <p>© 2025 Arzenics. All Rights Reserved.</p>
-    <div class="links">
-      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-    </div>
-    <div class="social">
-      <a href="#">🌐</a>
-      <a href="#">🔗</a>
-      <a href="#">✉️</a>
-    </div>
+    <div class="links"><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></div>
+    <div class="social"><a href="#">🌐</a><a href="#">🔗</a><a href="#">✉️</a></div>
   </footer>
 
+  <!-- External Floating Logos JS -->
+  <script src="ourclients.js"></script>
+
   <script>
-    // Header shrink effect
+    // Header shrink
     const header = document.getElementById("main-header");
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        header.classList.add("shrink");
-      } else {
-        header.classList.remove("shrink");
-      }
+      if (window.scrollY > 50) header.classList.add("shrink");
+      else header.classList.remove("shrink");
     });
 
-    // ✅ Trigger bars animation only on scroll into view (with delay)
-    const bars = document.querySelector(".project-bars");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            bars.classList.add("animate");
-          }, 500); // 🔥 0.5s delay before adding animate class
-          observer.unobserve(bars); // run only once
-        }
+    // Project bars animation
+    const bars = document.querySelectorAll(".project-bars .bar");
+    const projectCard = document.getElementById("project-card");
+    function animateBars() {
+      bars.forEach((bar, i) => {
+        bar.style.animation = "none"; bar.offsetHeight;
+        setTimeout(() => { bar.style.animation = "miniBounce 0.6s forwards"; }, i * 200);
       });
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { animateBars(); observer.unobserve(entry.target); } });
     }, { threshold: 0.5 });
-
-    observer.observe(bars);
+    observer.observe(projectCard);
+    projectCard.addEventListener("mouseenter", animateBars);
   </script>
 </body>
 </html>
