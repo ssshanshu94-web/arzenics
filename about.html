@@ -72,20 +72,22 @@
     }
 
     .values {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center; /* 👈 THIS is the real fix */
+}
 
-    .value-card {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: 0.3s;
-    }
+.value-card {
+  width: 100%;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s;
+}
 
     .value-card:hover {
       transform: translateY(-5px);

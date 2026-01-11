@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Development - Arzenics</title>
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background: #f9fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      width: 100%;        
+      max-width: 100%;    
+      box-sizing: border-box;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.75rem; /* 🔥 compact spacing */
+    }
+
+    .computer-icon {
+      width: 40px;
+      height: 40px;
+      transform: scale(0);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #333;
+      line-height: 1.4; /* 🔥 fix heading height */
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5; /* 🔥 fix desc spacing */
+    }
+
+    /* ✅ Icon bounce */
+    @keyframes iconBounce {
+      0%   { transform: scale(0); }
+      55%  { transform: scale(1.12); }
+      70%  { transform: scale(0.92); }
+      82%  { transform: scale(1.05); }
+      90%  { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+
+    /* ✅ Flat line expand */
+    @keyframes expandLine {
+      0%   { transform: scaleX(0); opacity: 0; }
+      60%  { transform: scaleX(1.1); opacity: 1; }
+      80%  { transform: scaleX(0.95); }
+      100% { transform: scaleX(1); }
+    }
+
+    .expandable {
+      transform-origin: center;
+      transform: scaleX(0);
+    }
+
+    /* ✅ Sheen slide */
+    @keyframes sheenMove {
+      0%   { transform: translateX(-100%); opacity: 0; }
+      10%  { opacity: 0.4; }
+      50%  { opacity: 0.7; }
+      90%  { opacity: 0.2; }
+      100% { transform: translateX(100%); opacity: 0; }
+    }
+    .sheen {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Software Development Card -->
+  <div class="card" id="project-card">
+    <div class="card-header">
+      <svg class="computer-icon" id="computerIcon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="holoGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#5df0ff"/>
+            <stop offset="50%" stop-color="#8a7cff"/>
+            <stop offset="100%" stop-color="#6effc6"/>
+          </linearGradient>
+
+          <linearGradient id="sheenGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="50%" stop-color="white" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+          </linearGradient>
+
+          <clipPath id="screenClip">
+            <rect x="0" y="0" width="40" height="24" rx="2" />
+          </clipPath>
+        </defs>
+
+        <!-- computer body -->
+        <rect x="6" y="10" width="52" height="34" rx="3" fill="#333"/>
+
+        <!-- screen -->
+        <g transform="translate(12,14)" clip-path="url(#screenClip)">
+          <rect width="40" height="24" rx="2" fill="url(#holoGrad)"/>
+          <rect id="sheen" class="sheen" x="0" y="0" width="40" height="24" fill="url(#sheenGrad)" opacity="0.4"/>
+          <!-- scanlines -->
+          <g opacity="0.1">
+            <rect y="2" width="40" height="1" fill="#fff"/>
+            <rect y="6" width="40" height="1" fill="#fff"/>
+            <rect y="10" width="40" height="1" fill="#fff"/>
+            <rect y="14" width="40" height="1" fill="#fff"/>
+            <rect y="18" width="40" height="1" fill="#fff"/>
+            <rect y="22" width="40" height="1" fill="#fff"/>
+          </g>
+        </g>
+
+        <!-- stand -->
+        <rect class="expandable" id="line1" x="18" y="46" width="28" height="3" rx="1.5" fill="#333"/>
+        <rect class="expandable" id="line2" x="14" y="50" width="36" height="3" rx="1.5" fill="#333"/>
+      </svg>
+
+      <h3>Software Development</h3>
+    </div>
+    <p>Building scalable, secure, and high-performance applications tailored to your business needs.</p>
+  </div>
+
+  <script>
+    const icon = document.getElementById("computerIcon");
+    const projectCard = document.getElementById("project-card");
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+    const sheen = document.getElementById("sheen");
+
+    function animateAll() {
+      // ✅ Bounce icon
+      icon.style.animation = "none";
+      icon.offsetHeight; 
+      setTimeout(() => {
+        icon.style.animation = "iconBounce 1s forwards";
+      }, 0);
+
+      // ✅ Expand lines
+      [line1, line2].forEach((line, i) => {
+        line.style.animation = "none";
+        line.offsetHeight;
+        setTimeout(() => {
+          line.style.animation = `expandLine 1.5s forwards`;
+        }, i * 200);
+      });
+
+      // ✅ Sheen slide
+      sheen.style.animation = "none";
+      sheen.offsetHeight;
+      setTimeout(() => {
+        sheen.style.animation = "sheenMove 3.5s forwards";
+      }, 100);
+    }
+
+    // Run animation once on entry
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateAll();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(projectCard);
+
+    // Hover animation
+    projectCard.addEventListener("mouseenter", animateAll);
+  </script>
+</body>
+</html>
