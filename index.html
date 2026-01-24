@@ -32,7 +32,7 @@
     /* Hero Section */
     .hero {
       background: linear-gradient(rgba(10,61,98,0.9), rgba(60,99,130,0.9));
-      color: #fff; text-align: center; padding: 8rem 2rem;
+      color: #fff; text-align: center; padding: 3rem 2rem;
     }
     .hero h1 { font-size: 3rem; margin-bottom: 1.5rem; font-weight: bold; }
     .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
@@ -79,7 +79,40 @@
       0% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
       50% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.8)); }
       100% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
+    
     }
+
+    /* ===== CLIENTS LOGOS ===== */
+    .clients {
+      background: #ffffff;
+      padding: 1.5rem 0;
+      overflow: hidden;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .clients-track {
+      display: flex;
+      align-items: center;
+      gap: 7rem;
+      width: max-content;
+      animation: scrollRTL 28s linear infinite;
+    }
+
+    .clients-track img {
+      height: 25px;
+      width: auto;
+      opacity: 1;
+    }
+
+    @keyframes scrollRTL {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -102,6 +135,24 @@
       <svg><rect x="1" y="1" width="calc(100% - 2)" height="calc(100% - 2)" rx="30" ry="30"></rect></svg>
     </a>
   </section>
+
+  <!-- CLIENT LOGOS -->
+<section class="clients">
+  <div class="clients-track">
+    <img src="clients/client1.svg" alt="Client 1">
+    <img src="clients/client2.png" alt="Client 2">
+    <img src="clients/client3.svg" alt="Client 3">
+    <img src="clients/client4.svg" alt="Client 4">
+    <img src="clients/client5.svg" alt="Client 5">
+
+    <!-- duplicate for seamless loop -->
+    <img src="clients/client1.svg" alt="Client 1">
+    <img src="clients/client2.png" alt="Client 2">
+    <img src="clients/client3.svg" alt="Client 3">
+    <img src="clients/client4.svg" alt="Client 4">
+    <img src="clients/client5.svg" alt="Client 5">
+  </div>
+</section>
 
   <!-- Services Section -->
   <section class="services" id="services">
