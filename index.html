@@ -113,6 +113,118 @@
       }
     }
 
+    /* ===== REVIEWS SECTION STYLING ===== */
+.reviews {
+  padding: 6rem 6%;
+  background: #f0f4f8; /* Light contrast for aesthetic look */
+  text-align: center;
+}
+
+.reviews h2 {
+  margin-bottom: 3.5rem;
+  font-size: 2.5rem;
+  color: #0a3d62; /* Matching Arzenics Primary Blue */
+  position: relative;
+}
+
+/* Header underline aesthetic */
+.reviews h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #3c6382;
+  margin: 15px auto 0;
+  border-radius: 10px;
+}
+
+.reviews-grid {
+  display: grid;
+  /* Auto-fit makes it responsive automatically */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: left;
+  /* Soft Navy Shadow for depth */
+  box-shadow: 0 10px 30px rgba(10, 61, 98, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 5px solid transparent;
+  position: relative;
+}
+
+/* Hover Effect: Card jumps up and border slides in */
+.review-card:hover {
+  transform: translateY(-12px);
+  border-left: 5px solid #0a3d62;
+  box-shadow: 0 20px 40px rgba(10, 61, 98, 0.12);
+}
+
+.stars {
+  color: #f1c40f; /* Premium Gold color */
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.feedback {
+  font-style: italic;
+  color: #4a5568;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.client-avatar {
+  width: 55px;
+  height: 55px;
+  /* Brand Gradient */
+  background: linear-gradient(135deg, #0a3d62, #3c6382);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(10, 61, 98, 0.2);
+}
+
+.client-details h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0a3d62;
+  font-weight: 600;
+}
+
+.client-details span {
+  font-size: 0.85rem;
+  color: #718096;
+  display: block;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+  .reviews {
+    padding: 4rem 4%;
+  }
+  .review-card {
+    padding: 1.8rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -195,6 +307,39 @@
       </div>
     </div>
   </section>
+  <section class="reviews">
+    <h2>Client Success Stories</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="feedback">"Neeraj did a great job on this jira development project, and I really enjoyed working with him.
+          Working with him was a pleasure, and I'll likely have moreprojects for him in the future "</p>
+        <div class="client-info">
+          <div class="client-avatar">MD</div>
+          <div>
+            <h4>
+              <a href="https://www.linkedin.com/in/maurizio-di-mauro/" target="_blank" class="client-link">
+                Maurizio Di Mauro
+            </a>
+            </h4>
+            <span>Co-Founder & Senior Consultant, LABEL S.r.l</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="feedback">"Great Working with Neeraj"</p>
+        <div class="client-info">
+          <div class="client-avatar">AS</div>
+          <div>
+            <h4>Chris Wilson</h4>
+            <span>Jira Admin, Wellfit Technologies, INC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <footer>
     <p>© 2026 Arzenics All Rights Reserved.</p>
