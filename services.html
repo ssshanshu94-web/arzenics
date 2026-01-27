@@ -32,7 +32,7 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-      z-index: 2;
+      z-index: 10;
     }
 
     header img {
@@ -54,7 +54,7 @@
       flex: 1;
       padding: 4rem 5%;
       text-align: center;
-      max-width: 1100px;
+      max-width: 1000px; /* Layout ko clean rakhne ke liye width set ki hai */
       margin: auto;
       position: relative;
       z-index: 2;
@@ -67,37 +67,57 @@
     }
 
     .services-section p {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       color: #555;
     }
 
+    /* 🔹 Updated Grid: 2 Columns Layout */
     .service-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr); /* 2 blocks wide */
+      gap: 2rem;
     }
 
+    /* 🔹 Card Styling with Animation Setup */
     .card {
       background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: 0.3s;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       text-align: left;
+      position: relative;
+      overflow: hidden;
+      border-left: 0px solid #0a3d62; /* Initial state */
     }
 
+    /* 🔹 Hover Animation: Left Line & Slide Effect */
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateX(10px); /* Halki si movement right side */
+      border-left: 6px solid #0a3d62; /* Left line appear hogi */
+      box-shadow: 10px 10px 25px rgba(0,0,0,0.1);
+      background-color: #ffffff;
     }
 
     .card h3 {
       margin-bottom: 1rem;
       color: #0a3d62;
+      transition: color 0.3s;
     }
 
     .card p {
       font-size: 0.95rem;
-      color: #555;
+      color: #666;
+    }
+
+    /* Responsive: Mobile par 1 column dikhega */
+    @media (max-width: 768px) {
+      .service-cards {
+        grid-template-columns: 1fr;
+      }
+      .services-section h1 {
+        font-size: 2rem;
+      }
     }
 
     footer {
@@ -106,24 +126,25 @@
       text-align: center;
       padding: 1.5rem;
       position: relative;
-      z-index: 3; /* footer सबसे ऊपर रहेगा */
+      z-index: 3;
     }
 
-    /* 🔹 Logo behind footer (cropped by footer bottom) */
+    /* 🔹 Background Logo Styling */
     .logo-container {
       position: fixed;
-      bottom: 0;     /* viewport bottom */
+      bottom: 0;
       right: 0;
       width: 350px;
       height: 350px;
-      z-index: 1;    /* footer से पीछे */
+      z-index: 1;
       pointer-events: none;
+      opacity: 0.6;
     }
 
     .bg-logo-wrapper {
       position: absolute;
-      bottom: -50px; /* crop bottom */
-      right: -50px;  /* crop right */
+      bottom: -50px;
+      right: -50px;
       width: 400px;
       height: 400px;
     }
@@ -141,12 +162,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgba(249,250,252,1), rgba(249,250,252,0.2));
+      background: linear-gradient(to bottom, rgba(249,250,252,1), rgba(249,250,252,0.1));
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+
   <header>
     <img src="Logo/SVG/logo1.svg" alt="Arzenics Logo">
     <nav>
@@ -158,7 +179,6 @@
     </nav>
   </header>
 
-  <!-- Services Section -->
   <section class="services-section">
     <h1>Our Services</h1>
     <p>We deliver cutting-edge IT services to empower businesses with the latest technology and innovative solutions.</p>
@@ -172,6 +192,7 @@
         <h3>IT Consulting</h3>
         <p>Expert consulting to streamline your IT processes, optimize resources, and accelerate digital transformation.</p>
       </div>
+
       <div class="card">
         <h3>Project Management</h3>
         <p>Agile and efficient project management services to ensure timely delivery and quality outcomes.</p>
@@ -180,6 +201,7 @@
         <h3>Cloud & DevOps</h3>
         <p>End-to-end cloud migration, deployment, and automation with DevOps best practices.</p>
       </div>
+
       <div class="card">
         <h3>UI/UX Design</h3>
         <p>Modern, user-friendly, and responsive designs that create engaging customer experiences.</p>
@@ -191,16 +213,15 @@
     </div>
   </section>
 
-  <!-- 🔹 Logo behind footer -->
   <div class="logo-container">
     <div class="bg-logo-wrapper">
       <img src="Logo/SVG/favBlack.svg" alt="Arzenics Fav Logo">
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Arzenics. All Rights Reserved.</p>
   </footer>
+
 </body>
 </html>
