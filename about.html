@@ -66,36 +66,61 @@
       text-align: center;
     }
 
+    .about-section h2 {
+      color: #0a3d62;
+      margin: 2rem 0 1rem;
+      font-size: 1.8rem;
+    }
+
     .about-section p {
       margin-bottom: 1.5rem;
       text-align: justify;
     }
 
+    /* 🔹 Updated Values Grid: 2x2 Layout with Animation */
     .values {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
-  gap: 1.5rem;
-  margin-top: 2rem;
-  justify-content: center; /* 👈 THIS is the real fix */
-}
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 Columns like Services */
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
 
-.value-card {
-  width: 100%;
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: 0.3s;
-}
+    .value-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: left; /* Consistent with other pages */
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      border-left: 0px solid #0a3d62;
+    }
 
+    /* 🔹 Left Line Animation on Hover */
     .value-card:hover {
-      transform: translateY(-5px);
+      transform: translateX(12px); /* Slide effect */
+      border-left: 8px solid #0a3d62; /* Blue line pops in */
+      box-shadow: 15px 15px 30px rgba(0,0,0,0.1);
     }
 
     .value-card h3 {
       color: #0a3d62;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+    }
+
+    .value-card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 0;
+    }
+
+    /* Responsive adjustment */
+    @media (max-width: 768px) {
+      .values {
+        grid-template-columns: 1fr;
+      }
     }
 
     footer {
@@ -104,27 +129,27 @@
       text-align: center;
       padding: 1.5rem;
       position: relative;
-      z-index: 3; /* footer सबसे ऊपर */
+      z-index: 3;
     }
 
-    /* 🔹 Logo behind footer (so it looks cropped from bottom) */
+    /* Logo behind footer */
     .logo-container {
       position: fixed;
-      bottom: 0;     /* viewport bottom से align */
+      bottom: 0;
       right: 0;
       width: 350px;
       height: 350px;
-      z-index: 1;    /* footer से पीछे */
+      z-index: 1;
       pointer-events: none;
     }
 
     .bg-logo-wrapper {
       position: absolute;
-      bottom: -50px; /* crop bottom side */
-      right: -50px;  /* crop right side */
+      bottom: -50px;
+      right: -50px;
       width: 400px;
       height: 400px;
-      animation: zoomEffect 6s infinite ease-in-out; /* 👈 zoom effect */
+      animation: zoomEffect 6s infinite ease-in-out;
     }
 
     .bg-logo-wrapper img {
@@ -143,16 +168,14 @@
       background: linear-gradient(to bottom, rgba(249,250,252,1), rgba(249,250,252,0.2));
     }
 
-    /* 🔹 Keyframes for zoom in/out */
     @keyframes zoomEffect {
       0%   { transform: scale(1); }
-      50%  { transform: scale(1.1); } /* zoom in */
-      100% { transform: scale(1); }   /* zoom out */
+      50%  { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <img src="Logo/SVG/logo1.svg" alt="Arzenics Logo">
     <nav>
@@ -164,7 +187,6 @@
     </nav>
   </header>
 
-  <!-- About Section -->
   <section class="about-section">
     <h1>About Us</h1>
     <p>
@@ -174,16 +196,14 @@
     </p>
     <p>
       Founded with the vision to deliver top-notch IT services, Arzenics provides 
-      expertise in software development, IT consulting, project management, and cloud solutions.  
-      Our goal is to become a trusted partner for enterprises of all sizes, 
-      helping them navigate the fast-evolving digital world.
+      expertise in software development, IT consulting, project management, and cloud solutions.
     </p>
 
     <h2>Our Vision</h2>
     <p>To be a global leader in IT services, delivering cutting-edge solutions that transform businesses and lives.</p>
 
     <h2>Our Mission</h2>
-    <p>To provide innovative, scalable, and sustainable IT solutions that help our clients achieve excellence in their industries.</p>
+    <p>To provide innovative, scalable, and sustainable IT solutions that help our clients achieve excellence.</p>
 
     <h2>Our Core Values</h2>
     <div class="values">
@@ -206,14 +226,12 @@
     </div>
   </section>
 
-  <!-- 🔹 Logo behind footer -->
   <div class="logo-container">
     <div class="bg-logo-wrapper">
       <img src="Logo/SVG/favBlack.svg" alt="Arzenics Fav Logo">
     </div>
   </div>
 
-  <!-- Footer (covers logo bottom) -->
   <footer>
     <p>© 2025 Arzenics. All Rights Reserved.</p>
   </footer>

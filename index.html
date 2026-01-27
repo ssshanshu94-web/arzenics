@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arzenics - IT Services Company</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Arzenics provides IT services including software development, IT consulting, project management, and cloud solutions.">
-
-  <!-- ✅ Favicon -->
   <link rel="icon" type="image/png" href="Logo/SVG/favWhite.png">
   <link rel="icon" type="image/svg+xml" href="Logo/SVG/favWhite.svg">
 
@@ -23,214 +19,97 @@
       display: flex; justify-content: space-between; align-items: center;
       position: sticky; top: 0; z-index: 1000; transition: all 0.3s ease;
     }
-    header img { height: 60px; animation: glowEffect 6s infinite ease-in-out; transition: all 0.3s ease; }
+    header img { height: 60px; transition: all 0.3s ease; }
     nav a { color: #fff; margin-left: 25px; text-decoration: none; font-weight: 500; font-size: 1.1rem; }
-    nav a:hover { text-decoration: underline; }
     header.shrink { padding: 0.5rem 6%; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
     header.shrink img { height: 40px; }
 
     /* Hero Section */
     .hero {
       background: linear-gradient(rgba(10,61,98,0.9), rgba(60,99,130,0.9));
-      color: #fff; text-align: center; padding: 3rem 2rem;
+      color: #fff; text-align: center; padding: 5rem 2rem;
     }
     .hero h1 { font-size: 3rem; margin-bottom: 1.5rem; font-weight: bold; }
     .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-    /* ✅ Button */
-    .btn {
-      position: relative; display: inline-block; padding: 1rem 2rem;
-      border-radius: 30px; font-weight: bold; text-decoration: none;
-      color: #0a3d62; background: #fff; overflow: hidden;
-      font-size: 1.1rem; transition: transform 0.3s ease, color 0.3s ease;
-    }
-    .btn svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-    .btn rect {
-      fill: none; stroke: #0a3d62; stroke-width: 2; stroke-dasharray: 400; stroke-dashoffset: 400;
-      transition: stroke-dashoffset 0.6s ease, stroke 0.3s ease;
-    }
-    .btn:hover rect { stroke-dashoffset: 0; stroke: #00e5ff; }
-    .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #2d2d2d; color: #2d2d2d; }
-
-    /* Services */
-    .services { flex: 1; padding: 6rem 6%; text-align: center; }
-    .services h2 { margin-bottom: 3rem; font-size: 2.5rem; color: #0a3d62; }
-    .service-cards { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 800px; margin: 0 auto; }
-    .card { background: #fff; padding: 2.5rem; border-radius: 15px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: 0.3s; text-align: left; display: flex; flex-direction: column; gap: 0.5rem; }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 10px 18px rgba(0,0,0,0.15); }
-    .card-icon { width: 40px; height: 24px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: center; gap: 3px; }
-
-    iframe {
-      width: 100%;
-      border: none;
-      min-height: 300px;
-    }
-
-
-
-    /* Footer */
-    footer { background: #0a3d62; color: #fff; text-align: center; padding: 2rem; }
-    footer .links { margin: 1rem 0; }
-    footer .links a { margin: 0 10px; color: #fff; text-decoration: none; font-size: 1rem; }
-    footer .social { margin-top: 1rem; }
-    footer .social a { margin: 0 10px; font-size: 1.3rem; color: #fff; text-decoration: none; }
-
-    @keyframes glowEffect {
-      0% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
-      50% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.8)); }
-      100% { filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
+    /* Services Section */
+    .services { padding: 6rem 6%; text-align: center; }
+    .services h2 { margin-bottom: 3.5rem; font-size: 2.5rem; color: #0a3d62; }
     
+    .service-cards { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 2.5rem; 
+      max-width: 1100px; 
+      margin: 0 auto; 
     }
 
-    /* ===== CLIENTS LOGOS ===== */
-    .clients {
-      background: #ffffff;
-      padding: 1.5rem 0;
-      overflow: hidden;
-      border-bottom: 1px solid #eaeaea;
+    .card { 
+      background: #fff; 
+      padding: 2.5rem; 
+      border-radius: 15px; 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.05); 
+      text-align: left; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 1rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-left: 0px solid #0a3d62;
+      position: relative;
     }
 
-    .clients-track {
+    .card:hover { 
+      transform: translateX(12px); 
+      border-left: 8px solid #0a3d62;
+      box-shadow: 15px 15px 30px rgba(0,0,0,0.1); 
+    }
+
+    /* 🔹 Icon Styling */
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(10, 61, 98, 0.1);
+      border-radius: 10px;
       display: flex;
       align-items: center;
-      gap: 7rem;
-      width: max-content;
-      animation: scrollRTL 28s linear infinite;
+      justify-content: center;
+      color: #0a3d62;
+      margin-bottom: 0.5rem;
     }
+    .card-icon svg { width: 28px; height: 28px; }
 
-    .clients-track img {
-      height: 25px;
-      width: auto;
-      opacity: 1;
+    .card h3 { color: #0a3d62; font-size: 1.4rem; }
+    .card p { color: #666; font-size: 1rem; line-height: 1.7; }
+
+    /* Reviews Section */
+    .reviews { padding: 6rem 6%; background: #f0f4f8; text-align: center; }
+    .reviews h2 { margin-bottom: 3.5rem; font-size: 2.5rem; color: #0a3d62; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
+    
+    .review-card {
+      background: #fff; padding: 2.5rem; border-radius: 20px; text-align: left;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-left: 0px solid #0a3d62;
     }
+    .review-card:hover { transform: translateX(12px); border-left: 8px solid #0a3d62; box-shadow: 15px 15px 35px rgba(0,0,0,0.1); }
 
-    @keyframes scrollRTL {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
+    .stars { color: #f1c40f; margin-bottom: 1rem; }
+    .client-info { display: flex; align-items: center; gap: 15px; margin-top: 1.5rem; }
+    .client-avatar { width: 50px; height: 50px; background: #0a3d62; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+    /* Footer */
+    footer { background: #0a3d62; color: #fff; text-align: center; padding: 2.5rem; }
+
+    @media (max-width: 850px) {
+      .service-cards { grid-template-columns: 1fr; }
     }
-
-    /* ===== REVIEWS SECTION STYLING ===== */
-.reviews {
-  padding: 6rem 6%;
-  background: #f0f4f8; /* Light contrast for aesthetic look */
-  text-align: center;
-}
-
-.reviews h2 {
-  margin-bottom: 3.5rem;
-  font-size: 2.5rem;
-  color: #0a3d62; /* Matching Arzenics Primary Blue */
-  position: relative;
-}
-
-/* Header underline aesthetic */
-.reviews h2::after {
-  content: '';
-  display: block;
-  width: 50px;
-  height: 4px;
-  background: #3c6382;
-  margin: 15px auto 0;
-  border-radius: 10px;
-}
-
-.reviews-grid {
-  display: grid;
-  /* Auto-fit makes it responsive automatically */
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.review-card {
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 20px;
-  text-align: left;
-  /* Soft Navy Shadow for depth */
-  box-shadow: 0 10px 30px rgba(10, 61, 98, 0.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-left: 5px solid transparent;
-  position: relative;
-}
-
-/* Hover Effect: Card jumps up and border slides in */
-.review-card:hover {
-  transform: translateY(-12px);
-  border-left: 5px solid #0a3d62;
-  box-shadow: 0 20px 40px rgba(10, 61, 98, 0.12);
-}
-
-.stars {
-  color: #f1c40f; /* Premium Gold color */
-  font-size: 0.9rem;
-  margin-bottom: 1.2rem;
-  letter-spacing: 2px;
-}
-
-.feedback {
-  font-style: italic;
-  color: #4a5568;
-  margin-bottom: 2rem;
-  line-height: 1.8;
-  font-size: 1rem;
-}
-
-.client-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.client-avatar {
-  width: 55px;
-  height: 55px;
-  /* Brand Gradient */
-  background: linear-gradient(135deg, #0a3d62, #3c6382);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1rem;
-  box-shadow: 0 4px 10px rgba(10, 61, 98, 0.2);
-}
-
-.client-details h4 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #0a3d62;
-  font-weight: 600;
-}
-
-.client-details span {
-  font-size: 0.85rem;
-  color: #718096;
-  display: block;
-}
-
-/* Responsive adjustment for small screens */
-@media (max-width: 768px) {
-  .reviews {
-    padding: 4rem 4%;
-  }
-  .review-card {
-    padding: 1.8rem;
-  }
-}
-
   </style>
 </head>
 <body>
+
   <header id="main-header">
     <img src="Logo/SVG/logo1.svg" alt="Arzenics Logo">
-    <nav aria-label="Main navigation">
+    <nav>
       <a href="#">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
@@ -241,114 +120,89 @@
 
   <section class="hero">
     <h1>Empowering Businesses with IT Solutions</h1>
-    <p>We deliver software development, IT consulting, and project management services tailored to your business. Our goal is to help you scale efficiently and stay future-ready.</p>
-    <a href="services.html" class="btn">
-      Explore Services
-      <svg><rect x="1" y="1" width="calc(100% - 2)" height="calc(100% - 2)" rx="30" ry="30"></rect></svg>
-    </a>
+    <p>Custom software, strategic consulting, and seamless cloud operations.</p>
   </section>
 
-  <!-- CLIENT LOGOS -->
-<section class="clients">
-  <div class="clients-track">
-    <img src="clients/client1.svg" alt="Client 1">
-    <img src="clients/client2.png" alt="Client 2">
-    <img src="clients/client3.svg" alt="Client 3">
-    <img src="clients/client4.svg" alt="Client 4">
-    <img src="clients/client5.svg" alt="Client 5">
-
-    <!-- duplicate for seamless loop -->
-    <img src="clients/client1.svg" alt="Client 1">
-    <img src="clients/client2.png" alt="Client 2">
-    <img src="clients/client3.svg" alt="Client 3">
-    <img src="clients/client4.svg" alt="Client 4">
-    <img src="clients/client5.svg" alt="Client 5">
-  </div>
-</section>
-
-  <!-- Services Section -->
   <section class="services" id="services">
     <h2>Our Services</h2>
     <div class="service-cards">
-      <!-- <div class="card">
+      
+      <div class="card">
         <div class="card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="12" rx="2" ry="2" stroke-width="2"/>
-            <path d="M2 20h20" stroke-width="2"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
         </div>
         <h3>Software Development</h3>
-        <p>Custom web & mobile applications designed to meet your business needs.</p>
-      </div> -->
-      <iframe src="softwareDevCard.html"></iframe>
+        <p>Custom web & mobile applications designed to meet your business needs with modern tech stacks.</p>
+      </div>
 
       <div class="card">
         <div class="card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2a9 9 0 0 0-9 9v4a2 2 0 0 0 2 2h1v-6H5a7 7 0 0 1 14 0h-1v6h1a2 2 0 0 0 2-2v-4a9 9 0 0 0-9-9z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 15v2a4 4 0 0 0 8 0v-2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         </div>
         <h3>IT Consulting</h3>
-        <p>Expert advice to streamline processes and boost productivity.</p>
+        <p>Expert advice to streamline processes, optimize infrastructure, and boost overall productivity.</p>
       </div>
-
-      <!-- ✅ Project Management inherited from projectManagementCard.html -->
-      <iframe src="projectManagementCard.html"></iframe>
 
       <div class="card">
         <div class="card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M6 19a4 4 0 0 1 0-8 5 5 0 0 1 9.9-1A4.5 4.5 0 0 1 20 19H6z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+        </div>
+        <h3>Project Management</h3>
+        <p>Agile methodologies to ensure your projects are delivered on time, within scope, and with high quality.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
           </svg>
         </div>
         <h3>Cloud & DevOps</h3>
-        <p>Seamless cloud migration, automation, and DevOps practices.</p>
+        <p>Seamless cloud migration, infrastructure automation, and modern DevOps practices for scaling.</p>
       </div>
+
     </div>
   </section>
+
   <section class="reviews">
     <h2>Client Success Stories</h2>
     <div class="reviews-grid">
       <div class="review-card">
         <div class="stars">★★★★★</div>
-        <p class="feedback">"Neeraj did a great job on this jira development project, and I really enjoyed working with him.
-          Working with him was a pleasure, and I'll likely have moreprojects for him in the future "</p>
+        <p class="feedback">"Neeraj did a great job on this jira development project. Working with him was a pleasure, and I'll likely have more projects for him in the future."</p>
         <div class="client-info">
           <div class="client-avatar">MD</div>
           <div>
-            <h4>
-              <a href="https://www.linkedin.com/in/maurizio-di-mauro/" target="_blank" class="client-link">
-                Maurizio Di Mauro
-            </a>
-            </h4>
-            <span>Co-Founder & Senior Consultant, LABEL S.r.l</span>
+            <h4>Maurizio Di Mauro</h4>
+            <span>Co-Founder, LABEL S.r.l</span>
           </div>
         </div>
       </div>
       <div class="review-card">
         <div class="stars">★★★★★</div>
-        <p class="feedback">"Great Working with Neeraj"</p>
+        <p class="feedback">"Great working with Neeraj. The technical knowledge brought to the team was outstanding. Highly recommended."</p>
         <div class="client-info">
-          <div class="client-avatar">AS</div>
+          <div class="client-avatar">CW</div>
           <div>
             <h4>Chris Wilson</h4>
-            <span>Jira Admin, Wellfit Technologies, INC</span>
+            <span>Jira Admin, Wellfit Technologies</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-
   <footer>
     <p>© 2026 Arzenics All Rights Reserved.</p>
-    <div class="links"><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></div>
-    <div class="social"><a href="#">🌐</a><a href="#">🔗</a><a href="#">✉️</a></div>
   </footer>
 
   <script>
-    // Header shrink
     const header = document.getElementById("main-header");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 50) header.classList.add("shrink");
