@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARZENICS - IT Services & Consulting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= CSS STYLES START ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Typography & Utilities */
+        h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: 1px; }
+        
+        .section-title {
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 2.5rem;
+            position: relative;
+            display: table;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #ff4d4d;
+            margin: 15px auto 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding { padding: 100px 0; }
+
+        /* Button Style */
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ff4d4d;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid #ff4d4d;
+            transition: 0.3s;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .btn-primary:hover { background: transparent; color: #ff4d4d; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.6s;
+        }
+
+        header.sticky {
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 15px 50px;
+        }
+
+        .logo {
+            font-family: 'Lexend Giga', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        header.sticky .logo { color: #333; }
+        nav ul { display: flex; }
+        nav ul li { margin: 0 20px; }
+        nav ul li a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        header.sticky nav ul li a { color: #333; }
+        .menu-toggle { display: none; color: #fff; font-size: 24px; cursor: pointer; }
+        header.sticky .menu-toggle { color: #333; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('image/heroImage.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            background-attachment: fixed;
+        }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+        
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            max-width: 900px; 
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero h1 { 
+            font-size: 3rem; 
+            line-height: 1.2; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+        }
+        .hero h1 span { color: #ff4d4d; }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .service-card {
+            padding: 40px 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            background: #fff;
+            border-radius: 15px;
+            text-align: left; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 100%; 
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .icon-box {
+            width: 50px; height: 50px; background: #f0f2f5; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; font-size: 20px; color: #1a1a2e; transition: 0.3s;
+        }
+        
+        .service-card:hover .icon-box { background: #ff4d4d; color: #fff; }
+
+        /* Testimonial Styling */
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .testimonial-card {
+            background: #fff; 
+            padding: 50px 40px; 
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            position: relative;
+            text-align: center;
+        }
+        .testimonial-card i.fa-quote-left { color: #ff4d4d; font-size: 2.5rem; margin-bottom: 20px; display: block; opacity: 0.2; }
+        .testimonial-text { font-style: italic; color: #555; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.8; }
+        .client-info { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .client-info img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid #f0f2f5; }
+        .client-name { font-weight: 700; color: #333; font-size: 1rem; }
+        .client-role { color: #ff4d4d; font-size: 0.85rem; font-weight: 600; }
+
+        /* Parallax Strips */
+        .parallax-strip {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+        }
+        .overlay-dark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+        .strip-content { position: relative; z-index: 2; }
+        .strip-content h2 { font-size: 2.2rem; font-weight: 300; text-transform: uppercase; letter-spacing: 2px; }
+
+        .stats-container { display: flex; justify-content: space-around; width: 100%; max-width: 1000px; position: relative; z-index: 2; }
+        .stat-item h3 { font-size: 3.5rem; color: #ff4d4d; margin-bottom: 10px; }
+        .stat-item p { font-weight: 600; text-transform: uppercase; }
+
+        /* Dark Background Utility */
+        .dark-bg { background: #1a1a1a; }
+        .white-text { color: #fff; }
+
+        /* Featured Work Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .gallery-item { 
+            position: relative; overflow: hidden; height: 300px; border-radius: 15px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; border-radius: 15px; }
+        .gallery-overlay {
+            position: absolute; bottom: -100%; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 77, 77, 0.9); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; color: #fff; transition: 0.4s;
+            border-radius: 15px; 
+        }
+        .gallery-item:hover .gallery-overlay { bottom: 0; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* About Section */
+        .split-layout { display: flex; align-items: stretch; gap: 50px; }
+        .about-text { flex: 1.2; padding-right: 20px; }
+        .about-image { flex: 0.8; display: flex; }
+        .about-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .section-title-left { font-size: 2.5rem; margin-bottom: 20px; text-transform: uppercase; }
+        .section-title-left::after { content: ''; display: block; width: 50px; height: 4px; background: #ff4d4d; margin-top: 10px; margin-bottom: 20px; }
+        .sub-heading { color: #ff4d4d; font-size: 1.2rem; margin-bottom: 8px; }
+        .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
+        .value-item h5 { color: #ff4d4d; font-size: 1.1rem; margin-bottom: 5px; }
+
+        /* Contact Section Form Styling */
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+        .contact-form input, .contact-form textarea { 
+            padding: 15px; border: 1px solid #333; width: 100%; background: #2a2a2a; 
+            border-radius: 10px; color: #fff; outline: none; transition: 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #ff4d4d; background: #333; }
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #888; }
+
+        /* Client Logos Section */
+        .clients-section { padding: 100px 0; background: #ffffff; text-align: center; }
+        .clients-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 50px 80px; margin-top: 50px; width: 100%; }
+        .client-logo-item {
+            max-width: 180px; max-height: 65px; width: auto; height: auto; object-fit: contain;
+            opacity: 0.5; filter: grayscale(100%); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .client-logo-item:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.15) translateY(-5px); }
+
+        /* Footer */
+        footer { background: #111; color: #fff; padding: 50px 0; text-align: center; }
+        .footer-logo { font-family: 'Lexend Giga', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+
+        /* Reveal Animation */
+        .reveal { position: relative; transform: translateY(50px); opacity: 0; transition: all 0.8s ease; }
+        .reveal.active { transform: translateY(0); opacity: 1; }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .split-layout { flex-direction: column; }
+            .about-image { height: 400px; }
+            .services-grid, .gallery-grid, .values-grid { grid-template-columns: 1fr; }
+            .stats-container { flex-direction: column; gap: 30px; }
+            header { padding: 15px 20px; }
+            nav ul { 
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; 
+                width: 100%; background: #fff; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+            nav ul li { margin: 15px 0; text-align: center; }
+            nav ul li a { color: #333; }
+            .menu-toggle { display: block; color: #fff; }
+            header.sticky .menu-toggle { color: #333; }
+            .hero h1 { font-size: 2rem; }
+            .clients-grid { gap: 30px; }
+            .client-logo-item { max-width: 120px; max-height: 45px; opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar">
+        <div class="logo">ARZENICS</div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#reviews">Why Us</a></li> 
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1 class="reveal active">From Project Planning to <br><span>Production Ready Software</span></h1>
+            <p class="reveal active">Plan Better - Build Faster - Test Smarter</p>
+            <a href="#contact" class="btn-primary reveal active">Let's Talk</a>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="icon-box"><i class="fas fa-code"></i></div>
+                    <h3>Software Development</h3>
+                    <p>Custom web & mobile applications designed to meet your business needs with modern tech stacks.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 0.1s;">
+                    <div class="icon-box"><i class="fas fa-user-friends"></i></div>
+                    <h3>IT Consulting</h3>
+                    <p>Expert advice to optimize infrastructure and boost productivity.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 0.2s;">
+                    <div class="icon-box"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Project Management</h3>
+                    <p>Agile methodologies for on-time and high-quality delivery.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 0.3s;">
+                    <div class="icon-box"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Seamless cloud migration and modern infrastructure automation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-strip" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); padding: 80px 0;">
+        <div class="overlay-dark"></div>
+        <div class="strip-content reveal"><h2>"Simplifying Complexity. Amplifying Growth."</h2></div>
+    </section>
+
+    <section id="work" class="section-padding dark-bg">
+        <div class="container">
+            <h2 class="section-title white-text reveal">Featured Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="P1">
+                    <div class="gallery-overlay"><h3>Project One</h3><p>Branding</p></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="P2">
+                    <div class="gallery-overlay"><h3>Project Two</h3><p>Marketing</p></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="P3">
+                    <div class="gallery-overlay"><h3>Project Three</h3><p>Development</p></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="P4">
+                    <div class="gallery-overlay"><h3>Project Four</h3><p>Strategy</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container split-layout">
+            <div class="about-text reveal">
+                <h2 class="section-title-left">Who We Are</h2>
+                <p><strong>Arzenics</strong> is a next-generation IT services and consulting company. We empower businesses with innovative technology solutions, enabling digital transformation, enhanced productivity, and long-term growth.</p>
+                <div class="sub-section">
+                    <h4 class="sub-heading">Our Vision</h4>
+                    <p>To be a global leader in IT services, delivering cutting-edge solutions that transform businesses and lives.</p>
+                </div>
+                <div class="sub-section">
+                    <h4 class="sub-heading">Our Mission</h4>
+                    <p>To provide innovative, scalable, and sustainable IT solutions that help our clients achieve excellence.</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-item"><h5>Innovation</h5><p>We thrive on creativity and out-of-the-box thinking.</p></div>
+                    <div class="value-item"><h5>Integrity</h5><p>Transparency, honesty, and responsibility in all we do.</p></div>
+                    <div class="value-item"><h5>Excellence</h5><p>Ensuring high-quality services and customer satisfaction.</p></div>
+                    <div class="value-item"><h5>Collaboration</h5><p>Teamwork and strong partnerships to achieve success.</p></div>
+                </div>
+            </div>
+            <div class="about-image reveal">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team Working Together">
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-strip" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+        <div class="overlay-dark"></div>
+        <div class="stats-container reveal">
+            <div class="stat-item"><h3>150+</h3><p>Projects</p></div>
+            <div class="stat-item"><h3>50+</h3><p>Clients</p></div>
+            <div class="stat-item"><h3>10</h3><p>Awards</p></div>
+        </div>
+    </section>
+
+    <section id="reviews" class="section-padding" style="background-color: #f0f2f5;">
+        <div class="container">
+            <h2 class="section-title reveal">What Our Clients Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card reveal">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">"Neeraj did a great job on this jira development project. Working with him was a pleasure, and I'll likely have more projects for him in the future."</p>
+                    <div class="client-info">
+                        <img src="image/client1.png" alt="Maurizio Di Mauro"> 
+                        <div class="client-details">
+                            <p class="client-name">Maurizio Di Mauro</p>
+                            <p class="client-role">Co-Founder, LABEL S.r.l</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-strip" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); padding: 80px 0;">
+        <div class="overlay-dark"></div>
+        <div class="strip-content reveal"><h2>"Innovating Today for a Smarter Tomorrow."</h2></div>
+    </section>
+
+    <section id="contact" class="section-padding dark-bg">
+        <div class="container" style="max-width: 700px;">
+            <h2 class="section-title white-text reveal">Get In Touch</h2>
+            <form class="contact-form reveal">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Message" rows="5" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="clients-section section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">Trusted By</h2>
+            <div class="clients-grid reveal">
+                <img src="clients/client1.svg" alt="Client 1" class="client-logo-item">
+                <img src="clients/client3.svg" alt="Client 3" class="client-logo-item">
+                <img src="clients/client4.svg" alt="Client 4" class="client-logo-item">
+                <img src="clients/client5.svg" alt="Client 5" class="client-logo-item">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">ARZENICS</div>
+            <p>&copy; 2026 Arzenics Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // Scroll Reveal Animation
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                if (revealtop < windowheight - 150) { reveals[i].classList.add('active'); }
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() { document.getElementById('nav-list').classList.toggle('active'); }
+
+        // Close menu on click (Mobile)
+        document.querySelectorAll('#nav-list li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-list').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
