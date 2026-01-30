@@ -250,18 +250,158 @@
         .dark-bg { background: #1a1a1a; }
         .white-text { color: #fff; }
 
-        /* Testimonial Styling */
-        .testimonial-container { display: flex; justify-content: center; max-width: 800px; margin: 0 auto; }
-        .testimonial-card {
-            background: #fff; padding: 50px 40px; border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; text-align: center;
+        /* ================= TESTIMONIAL CARDS (UPDATED WITH LINKEDIN) ================= */
+        .testimonial-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
+
+        .card {
+            width: 300px;
+            height: 360px; 
+            background: white;
+            border-radius: 32px;
+            padding: 3px;
+            position: relative;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 40px 30px -20px;
+            transition: all 0.5s ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+            margin: 20px;
         }
-        .testimonial-card i.fa-quote-left { color: #ff4d4d; font-size: 2.5rem; margin-bottom: 20px; display: block; opacity: 0.2; }
-        .testimonial-text { font-style: italic; color: #555; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.8; }
-        .client-info { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .client-info img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid #f0f2f5; }
-        .client-name { font-weight: 700; color: #333; font-size: 1rem; }
-        .client-role { color: #ff4d4d; font-size: 0.85rem; font-weight: 600; }
+
+        .card .profile-pic {
+            position: absolute;
+            width: calc(100% - 6px);
+            height: calc(100% - 6px);
+            top: 3px;
+            left: 3px;
+            border-radius: 29px;
+            z-index: 1;
+            border: 0px solid #ff4d4d;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+            background: #eee;
+        }
+
+        .card .profile-pic img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-position: center;
+            transition: all 0.5s ease-in-out 0s;
+        }
+
+        .card .bottom {
+            position: absolute;
+            bottom: 3px;
+            left: 3px;
+            right: 3px;
+            background: #ff4d4d;
+            top: 80%;
+            border-radius: 29px;
+            z-index: 2;
+            box-shadow: rgba(96, 75, 74, 0.188) 0px 5px 5px 0px inset;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+        }
+
+        .card .bottom .content {
+            position: absolute;
+            top: 40px; 
+            left: 1.5rem;
+            right: 1.5rem;
+            bottom: 60px; 
+            color: #fff;
+            overflow: hidden; 
+        }
+
+        .card .bottom .content .name {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card .bottom .content .about-me {
+            display: block;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            font-style: italic;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .client-role-text {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 5px;
+        }
+
+        .card .bottom .bottom-bottom {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space between LinkedIn and Button */
+        }
+
+        /* LinkedIn Icon Style */
+        .linkedin-link {
+            color: #fff;
+            font-size: 1.4rem;
+            transition: 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .linkedin-link:hover {
+            color: #0077b5; /* LinkedIn Blue */
+            transform: scale(1.1);
+        }
+
+        .card .bottom .bottom-bottom .button {
+            background: white;
+            color: #ff4d4d;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            box-shadow: rgba(165, 132, 130, 0.133) 0px 5px 5px 0px;
+            transition: all 0.3s ease;
+        }
+
+        .card .bottom .bottom-bottom .button:hover {
+            background: #333;
+            color: white;
+        }
+
+        /* Card Hover Effects */
+        .card:hover { border-top-left-radius: 55px; }
+
+        .card:hover .bottom {
+            top: 20%;
+            border-radius: 80px 29px 29px 29px;
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+        }
+
+        .card:hover .profile-pic {
+            width: 100px;
+            height: 100px;
+            aspect-ratio: 1;
+            top: 10px;
+            left: 10px;
+            border-radius: 50%;
+            z-index: 3;
+            border: 5px solid #ff4d4d;
+            box-shadow: rgba(96, 75, 74, 0.2) 0px 5px 5px 0px;
+            transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+        }
 
         /* Contact Section */
         .contact-form { display: flex; flex-direction: column; gap: 15px; }
@@ -481,19 +621,31 @@
 
     <section id="reviews" class="section-padding" style="background-color: #f0f2f5;">
         <div class="container">
-            <h2 class="section-title reveal">Client Feedback</h2>
-            <div class="testimonial-container">
-                <div class="testimonial-card reveal">
-                    <i class="fas fa-quote-left"></i>
-                    <p class="testimonial-text">"Neeraj did a great job on this jira development project. Working with him was a pleasure, and I'll likely have more projects for him in the future."</p>
-                    <div class="client-info">
-                        <img src="Image/client1.png" alt="Maurizio Di Mauro"> 
-                        <div class="client-details">
-                            <p class="client-name">Maurizio Di Mauro</p>
-                            <p class="client-role">Co-Founder, LABEL S.r.l</p>
+            <h2 class="section-title reveal">Hear From Our Clients</h2>
+            <div class="testimonial-container reveal">
+                
+                <div class="card">
+                    <div class="profile-pic">
+                        <img src="Image/client1.png" alt="Maurizio Di Mauro">
+                    </div>
+
+                    <div class="bottom">
+                        <div class="content">
+                            <span class="name">Maurizio Di Mauro</span>
+                            <span class="about-me">
+                                "Neeraj did a great job on this Jira development project. Working with him was a pleasure, and I'll likely have more projects for him in the future."
+                            </span>
+                            <span class="client-role-text">Co-Founder, LABEL S.r.l</span>
+                        </div>
+                        <div class="bottom-bottom">
+                            <a href="https://www.linkedin.com/in/maurizio-di-mauro/" target="_blank" class="linkedin-link" title="LinkedIn Profile">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <button class="button">See More</button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
