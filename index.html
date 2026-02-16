@@ -11,6 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    
+
+
 
     <style>
         /* ================= CSS STYLES START ================= */
@@ -446,6 +450,11 @@
     font-weight: 600;
     text-decoration: none;
     transition: 0.25s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    pointer-events: auto;
+    z-index: 100;
 }
 
 .book-call-btn:hover {
@@ -509,6 +518,23 @@ contact-right {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+}
+.thank-you-note {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #aaa;
+    max-width: 420px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+/* Visible state */
+.thank-you-note.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
@@ -629,7 +655,7 @@ contact-right {
             display: none; 
             align-items: center;
             justify-content: center;
-            z-index: 2000;
+            z-index: 900;
             backdrop-filter: blur(8px);
         }
 
@@ -912,14 +938,19 @@ contact-right {
                 <li>✔ QA & Testing Consulting</li>
             </ul>
 
-            <a href="https://calendly.com/arzenics/free-consultation"
-               target="_blank"
-               class="book-call-btn">
-                Book a Free 30-Min Call
+            <a href="#" id="open-calendly" class="book-call-btn">
+            Book a Free 30-Min Call
             </a>
 
+
             <span class="call-meta">⏱ 30 mins • Online • Free</span>
+
+              <p id="consult-thankyou" class="thank-you-note">
+                Thank you for scheduling a consultation.
+                Our team will review your details and reach out to you shortly before the scheduled call.
+            </p>
         </div>
+      
 
         <!-- RIGHT: Contact Form -->
         <div class="contact-right reveal">
@@ -963,7 +994,7 @@ contact-right {
         <div class="footer-col">
             <div class="footer-logo">ARZENICS</div>
             <p class="footer-desc">
-                Custom software engineering with precision and scale.
+                From project planning to production-ready software
             </p>
         </div>
 
@@ -1093,7 +1124,64 @@ contact-right {
                     }, 3000);
                 });
         });
+
         reveal();
+//Calendly Integration with Force-Close Logic
+        
+       document.addEventListener("click", function (e) {
+        const btn = e.target.closest("#open-calendly");
+        if (!btn) return;
+
+        e.preventDefault();
+
+    // 🔥 FORCE-CLOSE any active modal / overlay
+        const modal = document.getElementById("statusModal");
+        if (modal) {
+            modal.style.display = "none";
+        }
+
+    // 🔥 Remove body lock if any
+        document.body.style.overflow = "auto";
+
+    // Load Calendly normally
+        if (window.Calendly) {
+            Calendly.initPopupWidget({
+                url: "https://calendly.com/vikasthakur5900/consultation_arzenics"
+            });
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.onload = function () {
+            Calendly.initPopupWidget({
+                url: "https://calendly.com/vikasthakur5900/consultation_arzenics"
+            });
+        };
+    document.body.appendChild(script);
+});
+    window.addEventListener("message", function (e) {
+    if (!e.data) return;
+
+    // Calendly sends different message shapes
+    if (
+        e.data.event === "calendly.event_scheduled" ||
+        e.data?.payload?.event === "calendly.event_scheduled"
+    ) {
+        const msg = document.getElementById("consult-thankyou");
+        if (!msg) return;
+
+        // Show
+        msg.classList.add("show");
+
+        // Hide after 4 seconds
+        setTimeout(() => {
+            msg.classList.remove("show");
+        }, 9000);
+    }
+});
+
     </script>
+    
 </body>
 </html>
