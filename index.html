@@ -406,110 +406,14 @@
         }
 
         /* Contact Section */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    max-width: 1100px;
-}
-.contact-left {
-    background: #1f1f1f;
-    border: 1px solid #2a2a2a;
-    border-radius: 16px;
-    padding: 40px;
-}
-
-.contact-desc {
-    color: #aaa;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 15px 0 20px;
-}
-
-.call-points {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-}
-
-.call-points li {
-    margin-bottom: 10px;
-    color: #ccc;
-    font-size: 0.9rem;
-}
-.book-call-btn {
-    display: inline-block;
-    background: #ff4d4d;
-    color: #fff;
-    padding: 14px 30px;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.25s ease;
-}
-
-.book-call-btn:hover {
-    background: #ff2f2f;
-    transform: translateY(-2px);
-}
-
-.call-meta {
-    display: block;
-    margin-top: 12px;
-    font-size: 0.85rem;
-    color: #888;
-}
-contact-right {
-    background: #1a1a1a;
-    border-radius: 16px;
-    padding: 40px;
-}
-
-.contact-right .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-.contact-right input,
-.contact-right textarea {
-    background: #2a2a2a;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    outline: none;
-    transition: 0.25s ease;
-}
-
-.contact-right input::placeholder,
-.contact-right textarea::placeholder {
-    color: #888;
-}
-
-.contact-right input:focus,
-.contact-right textarea:focus {
-    background: #333;
-    border-color: #ff4d4d;
-}.contact-right .btn-primary {
-    margin-top: 10px;
-    align-self: flex-start;
-}
-
-.contact-right textarea {
-    resize: none;
-    min-height: 140px;
-}
-.contact-left,
-.contact-right {
-    min-height: 520px;
-}
-
-
-@media (max-width: 900px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-}
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea { 
+            padding: 15px; border: 1px solid #333; width: 100%; background: #2a2a2a; 
+            border-radius: 10px; color: #fff; outline: none; transition: 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #ff4d4d; background: #333; }
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #888; }
+        .file-hint { color: #ff4d4d; font-size: 0.75rem; margin-top: -10px; margin-bottom: 5px; text-align: left; }
 
 
         /* Clients Section */
@@ -846,49 +750,9 @@ contact-right {
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="profile-pic">
-                        <img src="Image/client1.png" alt="Maurizio Di Mauro">
-                    </div>
+                
 
-                    <div class="bottom">
-                        <div class="content">
-                            <span class="name">Maurizio Di Mauro</span>
-                            <span class="about-me">
-                                "Neeraj did a great job on this Jira development project. Working with him was a pleasure, and I'll likely have more projects for him in the future."
-                            </span>
-                            <span class="client-role-text">Co-Founder, LABEL S.r.l</span>
-                        </div>
-                        <div class="bottom-bottom">
-                            <a href="https://www.linkedin.com/in/maurizio-di-mauro/" target="_blank" class="linkedin-link" title="LinkedIn Profile">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <button class="button">See More</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="profile-pic">
-                        <img src="Image/client1.png" alt="Maurizio Di Mauro">
-                    </div>
-
-                    <div class="bottom">
-                        <div class="content">
-                            <span class="name">Maurizio Di Mauro</span>
-                            <span class="about-me">
-                                "Neeraj did a great job on this Jira development project. Working with him was a pleasure, and I'll likely have more projects for him in the future."
-                            </span>
-                            <span class="client-role-text">Co-Founder, LABEL S.r.l</span>
-                        </div>
-                        <div class="bottom-bottom">
-                            <a href="https://www.linkedin.com/in/maurizio-di-mauro/" target="_blank" class="linkedin-link" title="LinkedIn Profile">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <button class="button">See More</button>
-                        </div>
-                    </div>
-                </div>
+            
 
             </div>
         </div>
@@ -896,30 +760,6 @@ contact-right {
 
     <section id="contact" class="section-padding dark-bg">
     <div class="container contact-grid">
-
-        <!-- LEFT: Book a Call -->
-        <div class="contact-left reveal">
-            <h2 class="section-title white-text">Book a Free Consultation</h2>
-
-            <p class="contact-desc">
-                Planning a software product, Jira integration, or testing setup?
-                Talk directly with our team and get clear technical direction.
-            </p>
-
-            <ul class="call-points">
-                <li>✔ Software Development Strategy</li>
-                <li>✔ Jira Integration & Automation</li>
-                <li>✔ QA & Testing Consulting</li>
-            </ul>
-
-            <a href="https://calendly.com/arzenics/free-consultation"
-               target="_blank"
-               class="book-call-btn">
-                Book a Free 30-Min Call
-            </a>
-
-            <span class="call-meta">⏱ 30 mins • Online • Free</span>
-        </div>
 
         <!-- RIGHT: Contact Form -->
         <div class="contact-right reveal">
@@ -963,7 +803,7 @@ contact-right {
         <div class="footer-col">
             <div class="footer-logo">ARZENICS</div>
             <p class="footer-desc">
-                Custom software engineering with precision and scale.
+                From project planning to production-ready software
             </p>
         </div>
 
