@@ -1,0 +1,247 @@
+/* =========================
+   GLOBAL RESET & BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================
+   TYPOGRAPHY & UTILITIES
+========================= */
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.5rem;
+    position: relative;
+    display: table;
+    margin: 0 auto 60px auto;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #ff4d4d;
+    margin: 15px auto 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #ff4d4d;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid #ff4d4d;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: #ff4d4d;
+}
+
+.btn-primary:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* =========================
+   HEADER (BLACK → WHITE ON SCROLL)
+========================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: #111;                 /* BLACK INITIALLY */
+    transition: 0.4s ease;
+}
+
+/* Sticky Header */
+header.sticky {
+    background: #fff;                 /* WHITE ON SCROLL */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    padding: 15px 50px;
+}
+
+/* Logo */
+.logo {
+    font-family: 'Lexend Giga', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;                      /* white on black */
+}
+
+header.sticky .logo {
+    color: #333;                      /* dark on white */
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;                      /* white on black */
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+header.sticky nav ul li a {
+    color: #333;                      /* dark on white */
+}
+
+/* Mobile toggle (future-proof) */
+.menu-toggle {
+    display: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+header.sticky .menu-toggle {
+    color: #333;
+}
+
+/* =========================
+   PRIVACY / POLICY PAGES
+========================= */
+.policy-page {
+    background: #f8f9fa;
+    padding-top: 160px; /* offset fixed header */
+}
+
+.policy-container {
+    max-width: 900px;
+}
+
+.policy-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.policy-updated {
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 50px;
+}
+
+.policy-container h3 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.policy-container p,
+.policy-container li {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.policy-container ul {
+    padding-left: 20px;
+}
+
+/* Main section headings (1, 2, 3...) */
+.policy-container h3 {
+    margin-top: 50px;
+    margin-bottom: 14px;
+    font-size: 1.35rem;
+}
+
+/* Sub-headings (1.1, 1.2...) */
+.policy-container h4 {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* Paragraphs */
+.policy-container p {
+    margin-bottom: 12px;
+}
+
+/* Lists */
+.policy-container ul {
+    margin: 8px 0 16px 20px;
+    padding-left: 18px;
+}
+
+/* List items */
+.policy-container li {
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+/* Remove extra gap before first sub-section */
+.policy-container h3 + h4 {
+    margin-top: 16px;
+}
+
+/* Remove awkward gap when list follows heading */
+.policy-container h4 + ul,
+.policy-container h3 + ul {
+    margin-top: 6px;
+}

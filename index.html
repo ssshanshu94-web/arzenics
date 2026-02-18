@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARZENICS - IT Services & Consulting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    
+
+
 
     <style>
         /* ================= CSS STYLES START ================= */
@@ -191,9 +197,21 @@
         .service-card:hover .icon-box { background: #ff4d4d; color: #fff; }
 
         /* Featured Work Grid */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-grid { display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            justify-items: center; 
+        }
+
+       
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
         .gallery-item { 
-            position: relative; overflow: hidden; height: 300px; border-radius: 15px; 
+            position: relative; overflow: hidden; height: 400px; 
+            border-radius: 15px; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; border-radius: 15px; }
@@ -202,6 +220,12 @@
             background: rgba(255, 77, 77, 0.9); display: flex; flex-direction: column;
             justify-content: center; align-items: center; color: #fff; transition: 0.4s;
             border-radius: 15px; 
+        }
+        .gallery-overlay h3,
+        .gallery-overlay p {
+            width: 100%;
+            text-align: center; /* center text even if it wraps */
+            padding: 0 10px;
         }
         .gallery-item:hover .gallery-overlay { bottom: 0; }
         .gallery-item:hover img { transform: scale(1.1); }
@@ -404,14 +428,133 @@
         }
 
         /* Contact Section */
-        .contact-form { display: flex; flex-direction: column; gap: 15px; }
-        .contact-form input, .contact-form textarea { 
-            padding: 15px; border: 1px solid #333; width: 100%; background: #2a2a2a; 
-            border-radius: 10px; color: #fff; outline: none; transition: 0.3s;
-        }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #ff4d4d; background: #333; }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #888; }
-        .file-hint { color: #ff4d4d; font-size: 0.75rem; margin-top: -10px; margin-bottom: 5px; text-align: left; }
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1100px;
+}
+.contact-left {
+    background: #1f1f1f;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.contact-desc {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 15px 0 20px;
+}
+
+.call-points {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.call-points li {
+    margin-bottom: 10px;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+.book-call-btn {
+    display: inline-block;
+    background: #ff4d4d;
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    pointer-events: auto;
+    z-index: 100;
+}
+
+.book-call-btn:hover {
+    background: #ff2f2f;
+    transform: translateY(-2px);
+}
+
+.call-meta {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: #888;
+}
+contact-right {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.contact-right .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.contact-right input,
+.contact-right textarea {
+    background: #2a2a2a;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.25s ease;
+}
+
+.contact-right input::placeholder,
+.contact-right textarea::placeholder {
+    color: #888;
+}
+
+.contact-right input:focus,
+.contact-right textarea:focus {
+    background: #333;
+    border-color: #ff4d4d;
+}.contact-right .btn-primary {
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.contact-right textarea {
+    resize: none;
+    min-height: 140px;
+}
+.contact-left,
+.contact-right {
+    min-height: 520px;
+}
+
+
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.thank-you-note {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #aaa;
+    max-width: 420px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+/* Visible state */
+.thank-you-note.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
         /* Clients Section */
         .clients-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 50px 80px; margin-top: 50px; }
@@ -419,8 +562,107 @@
         .client-logo-item:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
         /* Footer */
-        footer { background: #111; color: #fff; padding: 50px 0; text-align: center; }
-        .footer-logo { font-family: 'Lexend Giga', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Lexend Giga', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+        .footer h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            border-top: 1px solid #222;
+            margin-top: 40px;
+            padding-top: 15px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+       .made-in {
+            font-size: 1rem;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Tricolour heart */
+        .india-heart {
+            width: 19px;
+            height: 19px;
+            display: inline-block;
+        }
+        .made-in:hover .india-heart {
+            transform: scale(1.1);
+            transition: 0.2s ease;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background: #fff;
+            color: #111;
+            transform: scale(1.1);
+        }
 
         /* Status Modal */
         .modal-overlay {
@@ -431,7 +673,7 @@
             display: none; 
             align-items: center;
             justify-content: center;
-            z-index: 2000;
+            z-index: 900;
             backdrop-filter: blur(8px);
         }
 
@@ -485,6 +727,8 @@
             .services-grid { grid-template-columns: 1fr; }
             .stats-container { flex-direction: column; gap: 40px; }
         }
+
+
     </style>
 </head>
 <body>
@@ -570,7 +814,14 @@
                         <p>Software Testing & Quality Control</p>
                     </div>
                 </div>
-            </div>
+
+                    <div class="gallery-item reveal" style="transition-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Custom Software">
+                    <div class="gallery-overlay">
+                        <h3>Custom Software</h3>
+                        <p>Tailored Solutions for Unique Challenges</p>
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -646,24 +897,68 @@
                     </div>
                 </div>
 
+
+
+    
+
             </div>
         </div>
     </section>
 
     <section id="contact" class="section-padding dark-bg">
-        <div class="container" style="max-width: 700px;">
-            <h2 class="section-title white-text reveal">Get In Touch</h2>
-            <form id="contact-form" class="contact-form reveal">
+    <div class="container contact-grid">
+
+        <!-- LEFT: Book a Call -->
+        <div class="contact-left reveal">
+            <h2 class="section-title white-text">Book a Free Consultation</h2>
+
+            <p class="contact-desc">
+                Planning a software product, Jira integration, or testing setup?
+                Talk directly with our team and get clear technical direction.
+            </p>
+
+            <ul class="call-points">
+                <li>✔ Software Development Strategy</li>
+                <li>✔ Jira Integration & Automation</li>
+                <li>✔ QA & Testing Consulting</li>
+            </ul>
+
+            <a href="#" id="open-calendly" class="book-call-btn">
+            Book a Free 30-Min Call
+            </a>
+
+
+            <span class="call-meta">⏱ 30 mins • Online • Free</span>
+
+              <p id="consult-thankyou" class="thank-you-note">
+                Thank you for scheduling a consultation.
+                Our team will review your details and reach out to you shortly before the scheduled call.
+            </p>
+        </div>
+      
+
+        <!-- RIGHT: Contact Form -->
+        <div class="contact-right reveal">
+            <h2 class="section-title white-text">Get In Touch</h2>
+
+            <form id="contact-form" class="contact-form">
                 <input type="text" name="user_name" placeholder="Your Name" required>
                 <input type="email" name="user_email" placeholder="Your Email" required>
                 <input type="text" name="subject" placeholder="Subject / Service Inquiry" required>
-                <textarea name="message" placeholder="Message" rows="5" required></textarea>
-                <input type="url" name="file_link" placeholder="Attachment Link (any cloud storage – Drive, Dropbox, OneDrive, etc.)">
-                <p class="file-hint">*Attachments are not allowed here. Please upload the file to Drive and paste the shareable link.</p>
-                <button type="submit" id="submit-btn" class="btn-primary">Send Message</button>
+                <textarea name="message" placeholder="Message" rows="6" required></textarea>
+                <input type="url" name="file_link" placeholder="Attachment Link (Drive, Dropbox, OneDrive, etc.)">
+                <p class="file-hint" style="color: red;"> *Attachments are not allowed here. Upload to Drive and paste the link.
+                </p>
+            <button type="submit" id="submit-btn" class="btn-primary">
+            Send Message
+            </button>
             </form>
+
         </div>
-    </section>
+
+    </div>
+</section>
+
 
     <section class="section-padding">
         <div class="container">
@@ -677,12 +972,80 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
+    <footer class="footer">
+    <div class="container footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-col">
             <div class="footer-logo">ARZENICS</div>
-            <p>&copy; 2026 Arzenics Tech. All rights reserved.</p>
+            <p class="footer-desc">
+                From project planning to production-ready software
+            </p>
         </div>
-    </footer>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Policies -->
+        <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="policy.html">Privacy Policy</a></li>
+                <li><a href="term.html">Terms & Conditions</a></li>
+                <li><a href="cookie.html">Cookie Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: <a href="mailto:support@arzenics.com">support@arzenics.com</a></p>
+            <p class="made-in">
+    Made in India
+    <svg class="india-heart" viewBox="0 0 32 29" aria-hidden="true">
+        <defs>
+            <linearGradient id="indiaGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF9933"/>
+                <stop offset="33%" stop-color="#FF9933"/>
+                <stop offset="33%" stop-color="#FFFFFF"/>
+                <stop offset="66%" stop-color="#FFFFFF"/>
+                <stop offset="66%" stop-color="#138808"/>
+                <stop offset="100%" stop-color="#138808"/>
+            </linearGradient>
+        </defs>
+        <path
+            fill="url(#indiaGradient)"
+            d="M23.6,0c-2.7,0-5.1,1.4-6.6,3.6C15.5,1.4,13.1,0,10.4,0
+               C5.6,0,1.8,3.8,1.8,8.6c0,9.1,15.2,20.4,15.2,20.4S32.2,17.7,32.2,8.6
+               C32.2,3.8,28.4,0,23.6,0z"/>
+    </svg>
+</p>
+            <div class="social-links">
+            <a href="https://www.linkedin.com/company/arzenics-tech" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+            <a href="https://github.com/arzenics" target="_blank" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+    </a>
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Arzenics Tech. All rights reserved.</p>
+    </div>
+</footer>
+
 
     <div id="statusModal" class="modal-overlay">
         <div class="modal-content">
@@ -746,7 +1109,64 @@
                     }, 3000);
                 });
         });
+
         reveal();
+//Calendly Integration with Force-Close Logic
+        
+       document.addEventListener("click", function (e) {
+        const btn = e.target.closest("#open-calendly");
+        if (!btn) return;
+
+        e.preventDefault();
+
+    // 🔥 FORCE-CLOSE any active modal / overlay
+        const modal = document.getElementById("statusModal");
+        if (modal) {
+            modal.style.display = "none";
+        }
+
+    // 🔥 Remove body lock if any
+        document.body.style.overflow = "auto";
+
+    // Load Calendly normally
+        if (window.Calendly) {
+            Calendly.initPopupWidget({
+                url: "https://calendly.com/vikasthakur5900/consultation_arzenics"
+            });
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.onload = function () {
+            Calendly.initPopupWidget({
+                url: "https://calendly.com/vikasthakur5900/consultation_arzenics"
+            });
+        };
+    document.body.appendChild(script);
+});
+    window.addEventListener("message", function (e) {
+    if (!e.data) return;
+
+    // Calendly sends different message shapes
+    if (
+        e.data.event === "calendly.event_scheduled" ||
+        e.data?.payload?.event === "calendly.event_scheduled"
+    ) {
+        const msg = document.getElementById("consult-thankyou");
+        if (!msg) return;
+
+        // Show
+        msg.classList.add("show");
+
+        // Hide after 4 seconds
+        setTimeout(() => {
+            msg.classList.remove("show");
+        }, 9000);
+    }
+});
+
     </script>
+    
 </body>
 </html>
