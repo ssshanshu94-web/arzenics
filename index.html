@@ -405,7 +405,7 @@
             color: white;
         }
 
-        /* Card Hover Effects */
+        /* Card Hover Effects 
         .card:hover { border-top-left-radius: 55px; }
 
         .card:hover .bottom {
@@ -425,7 +425,28 @@
             border: 5px solid #ff4d4d;
             box-shadow: rgba(96, 75, 74, 0.2) 0px 5px 5px 0px;
             transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
-        }
+        }*/
+        /* ACTIVE CARD STATE (after clicking See More) */
+.card.active {
+    border-top-left-radius: 55px;
+}
+
+.card.active .bottom {
+    top: 20%;
+    border-radius: 80px 29px 29px 29px;
+}
+
+.card.active .profile-pic {
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    z-index: 3;
+    border: 5px solid #ff4d4d;
+}
+
 
         /* Contact Section */
 .contact-grid {
@@ -1163,6 +1184,33 @@ contact-right {
         setTimeout(() => {
             msg.classList.remove("show");
         }, 9000);
+    }
+});
+document.addEventListener("click", function (e) {
+
+    // toggle card when clicking the action button
+    if (e.target.classList.contains("button")) {
+        const card = e.target.closest(".card");
+        if (!card) return;
+
+        // if already active, close it
+        if (card.classList.contains("active")) {
+            card.classList.remove("active");
+            e.target.textContent = "See More";
+        } else {
+            card.classList.add("active");
+            e.target.textContent = "Close";
+        }
+        return;
+    }
+
+    // older logic left for any other elements that might use the same text
+    if (e.target.textContent === "Close") {
+        const card = e.target.closest(".card");
+        if (!card) return;
+
+        card.classList.remove("active");
+        e.target.textContent = "See More";
     }
 });
 
