@@ -300,7 +300,7 @@
             z-index: 1;
             border: 0px solid #ff4d4d;
             overflow: hidden;
-            transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+            transition: width 0.28s ease-in-out, height 0.28s ease-in-out, top 0.28s ease-in-out, left 0.28s ease-in-out, border-radius 0.28s ease-in-out, z-index 0.28s ease-in-out;
             background: #eee;
         }
 
@@ -323,7 +323,8 @@
             z-index: 2;
             box-shadow: rgba(96, 75, 74, 0.188) 0px 5px 5px 0px inset;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+            /* default: small delay when closing so content drops slightly after image expands */
+            transition: top 0.18s cubic-bezier(0.645, 0.045, 0.355, 1) 0.10s, border-radius 0.18s cubic-bezier(0.645, 0.045, 0.355, 1) 0.10s;
         }
 
         .card .bottom .content {
@@ -425,15 +426,17 @@
             border: 5px solid #ff4d4d;
             box-shadow: rgba(96, 75, 74, 0.2) 0px 5px 5px 0px;
             transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
-        }*/
+        }
         /* ACTIVE CARD STATE (after clicking See More) */
 .card.active {
     border-top-left-radius: 55px;
 }
 
-.card.active .bottom {
+.card.expanded .bottom {
     top: 20%;
     border-radius: 80px 29px 29px 29px;
+    /* when opening, wait slightly longer so profile image finishes shrinking first */
+    transition: top 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0.20s, border-radius 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0.20s;
 }
 
 .card.active .profile-pic {
@@ -1187,31 +1190,60 @@ contact-right {
     }
 });
 document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".button");
+    if (!btn) return;
 
-    // toggle card when clicking the action button
-    if (e.target.classList.contains("button")) {
-        const card = e.target.closest(".card");
-        if (!card) return;
+    e.stopPropagation();
 
-        // if already active, close it
-        if (card.classList.contains("active")) {
+    const card = btn.closest(".card");
+    if (!card) return;
+
+    const bottom = card.querySelector(".bottom");
+    const isOpen = card.classList.contains("expanded");
+
+    // =========================
+    // CLOSE CARD (FIXED ORDER)
+    // =========================
+    if (isOpen) {
+
+        // 1️⃣ First: move bottom DOWN
+        card.classList.remove("expanded");
+
+        // 2️⃣ After bottom finishes moving, expand profile
+        const onBottomEnd = function (ev) {
+            if (ev.propertyName !== "top") return;
+
             card.classList.remove("active");
-            e.target.textContent = "See More";
-        } else {
-            card.classList.add("active");
-            e.target.textContent = "Close";
-        }
+            btn.textContent = "See More";
+
+            bottom.removeEventListener("transitionend", onBottomEnd);
+        };
+
+        bottom.addEventListener("transitionend", onBottomEnd);
         return;
     }
 
-    // older logic left for any other elements that might use the same text
-    if (e.target.textContent === "Close") {
-        const card = e.target.closest(".card");
-        if (!card) return;
+    // =========================
+    // OPEN CARD (ALREADY CORRECT)
+    // =========================
 
-        card.classList.remove("active");
-        e.target.textContent = "See More";
-    }
+    // Close any other open cards (optional but clean)
+    document.querySelectorAll(".card.expanded").forEach(c => {
+        c.classList.remove("expanded");
+        c.classList.remove("active");
+        const b = c.querySelector(".button");
+        if (b) b.textContent = "See More";
+    });
+
+    // 1️⃣ Shrink profile
+    card.classList.add("active");
+
+    // 2️⃣ Move bottom UP (same frame – hover CSS handles smoothness)
+    requestAnimationFrame(() => {
+        card.classList.add("expanded");
+    });
+
+    btn.textContent = "Close";
 });
 
     </script>
