@@ -485,6 +485,102 @@
             .services-grid { grid-template-columns: 1fr; }
             .stats-container { flex-direction: column; gap: 40px; }
         }
+
+        /*Project-modal class */
+        /* Project Management Tools Modal */
+.tool-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    backdrop-filter: blur(6px);
+}
+
+.tool-modal.active {
+    display: flex;
+}
+
+.tool-modal-content {
+    background: #111;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 20px;
+    padding: 35px;
+    color: #fff;
+    position: relative;
+}
+
+.tool-modal-content h3 {
+    margin-bottom: 8px;
+}
+
+.tool-subtext {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.tool-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 30px;
+}
+
+.tool-tabs li {
+    padding: 12px;
+    cursor: pointer;
+    opacity: 0.6;
+    border-left: 3px solid transparent;
+}
+
+.tool-tabs li.active {
+    opacity: 1;
+    border-left-color: #ff4d4d;
+    font-weight: 600;
+}
+
+.tool-panel {
+    display: none;
+}
+
+.tool-panel.active {
+    display: block;
+}
+
+.tool-panel ul {
+    margin-top: 10px;
+}
+
+.tool-panel li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Interactive tool-panel visuals */
+.tool-panel .intro { margin-bottom: 18px; color: #ddd; }
+.tool-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tool-feature { background: rgba(255,255,255,0.04); padding: 12px; border-radius: 10px; color: #eee; display:flex; gap:10px; align-items:center; cursor: pointer; transition: all 0.25s ease; border: 1px solid transparent; }
+.tool-feature:hover { transform: translateY(-4px); border-color: rgba(255,77,77,0.12); }
+.tool-feature .icon { width:36px; height:36px; border-radius:8px; background: rgba(255,77,77,0.12); display:flex; align-items:center; justify-content:center; color: #ffbcbc; font-size:16px; }
+.tool-feature.active { background: linear-gradient(90deg, rgba(255,77,77,0.14), rgba(255,77,77,0.06)); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.tool-badges { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap }
+.badge { background: rgba(255,255,255,0.06); padding:6px 8px; border-radius:999px; color:#fff; font-size:0.75rem; }
+.tool-cta { margin-top:18px; }
     </style>
 </head>
 <body>
@@ -521,6 +617,7 @@
                     <h3>Software Development</h3>
                     <p>Custom web & mobile applications designed to meet your business needs with modern tech stacks.</p>
                 </div>
+
                 <div class="service-card reveal" style="transition-delay: 0.1s;">
                     <div class="icon-box"><i class="fas fa-user-friends"></i></div>
                     <h3>IT Consulting</h3>
@@ -529,7 +626,7 @@
                 <div class="service-card reveal" style="transition-delay: 0.2s;">
                     <div class="icon-box"><i class="fas fa-clipboard-check"></i></div>
                     <h3>Project Management</h3>
-                    <p>Agile methodologies for on-time and high-quality delivery.</p>
+                    <p>Agile driven workflows for on-time and high-quality delivery.</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.3s;">
                     <div class="icon-box"><i class="fas fa-cloud"></i></div>
@@ -747,6 +844,291 @@
                 });
         });
         reveal();
+
+    // Modal and tool-tab event wiring (wait until DOM is ready)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Open Project Management modal
+        document.querySelectorAll(".service-card").forEach(card => {
+            const title = card.querySelector("h3");
+            if (title && title.innerText.includes("Project Management")) {
+                card.addEventListener("click", () => {
+                    const pm = document.getElementById("pmModal");
+                    if (pm) {
+                        pm.classList.add("active");
+                        document.body.style.overflow = "hidden";
+                        const c = document.querySelector('#pmModal .modal-close');
+                        if (c) c.focus();
+                    }
+                });
+            }
+        });
+
+        // Close modal (safely attach if element exists)
+        const closeBtn = document.querySelector("#pmModal .modal-close");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                const pm = document.getElementById("pmModal");
+                if (pm) pm.classList.remove("active");
+                document.body.style.overflow = "auto";
+            });
+        }
+
+        // Tool tab switching
+        document.querySelectorAll(".tool-tabs li").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".tool-tabs li, .tool-panel")
+                    .forEach(el => el.classList.remove("active"));
+
+                tab.classList.add("active");
+                const panel = document.getElementById(tab.dataset.tool);
+                if (panel) panel.classList.add("active");
+            });
+        });
+    });
     </script>
-</body>
-</html>
+    <!-- Project Management Tools Modal -->
+<div id="pmModal" class="tool-modal">
+    <div class="tool-modal-content">
+
+        <button class="modal-close">&times;</button>
+
+        <h3>Project Management Tools We Operate</h3>
+        <p class="tool-subtext">
+            We don’t just use tools — we design and run delivery systems around them
+        </p>
+
+        <div class="tool-layout">
+            <!-- LEFT: Tabs -->
+                <ul class="tool-tabs">
+                <li class="active" data-tool="jira">Jira</li>
+                <li data-tool="clickup">ClickUp</li>
+                <li data-tool="monday">Monday.com</li>
+                <li data-tool="asana">Asana</li>
+                <li data-tool="github">GitHub Projects</li>
+            </ul>
+
+            <!-- RIGHT: Content -->
+            <div class="tool-details">
+
+                <div class="tool-panel active" id="jira">
+                    <h4>Jira — Delivery Governance & Agile Control</h4>
+                    <p class="intro"> We use Jira as the core delivery system for engineering teams, with standardised workflows,plugins, automation, and leadership-level reporting.</p>
+                    <div class="tool-features">
+                        <div class="tool-feature" data-tool="jira" tabindex="0">
+                            <div class="icon"><i class="fas fa-tasks"></i></div>
+                            <div>
+                                <strong>Sprints & Backlogs</strong>
+                                <div class="sub">Structured sprint planning with clear ownership and definitions of done.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="jira" tabindex="0">
+                            <div class="icon"><i class="fas fa-bug"></i></div>
+                            <div>
+                                <strong>Issue Tracking</strong>
+                                <div class="sub">Issues linked to code, releases, and deployments.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="jira" tabindex="0">
+                            <div class="icon"><i class="fas fa-cogs"></i></div>
+                            <div>
+                                <strong>Automation</strong>
+                                <div class="sub">Policy-driven transitions and approvals.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="jira" tabindex="0">
+                            <div class="icon"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <strong>Leadership Reporting</strong>
+                                <div class="sub">Sprint health, velocity, and delivery insights.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-badges"><span class="badge">Scrum</span><span class="badge">Kanban</span><span class="badge">Scaled Agile</span></div>
+                    <div class="tool-cta"><button class="btn-primary" onclick="window.open('https://www.atlassian.com/software/jira', '_blank')">Learn More</button></div>
+                </div>
+
+                <div class="tool-panel" id="clickup">
+                    <h4>ClickUp — Execution Layer for Fast-Moving Teams</h4>
+                    <p class="intro">ClickUp helps non-engineering teams execute faster with clear visibility and reduced coordination overhead.</p>
+                    <div class="tool-features">
+                        <div class="tool-feature" data-tool="clickup" tabindex="0">
+                            <div class="icon"><i class="fas fa-th-large"></i></div>
+                            <div>
+                                <strong>Unified Workspace</strong>
+                                <div class="sub">Tasks, docs, and dashboards in one place.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="clickup" tabindex="0">
+                            <div class="icon"><i class="fas fa-chart-pie"></i></div>
+                            <div>
+                                <strong>Process-Aligned Views</strong>
+                                <div class="sub">List, board, Gantt, and calendar views.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="clickup" tabindex="0">
+                            <div class="icon"><i class="fas fa-comments"></i></div>
+                            <div>
+                                <strong>Contextual Collaboration</strong>
+                                <div class="sub">Discussions stay connected to work.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="clickup" tabindex="0">
+                            <div class="icon"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <strong>Automations</strong>
+                                <div class="sub">Routine updates handled automatically.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-badges"><span class="badge">Product</span><span class="badge">Design</span><span class="badge">Dashboards</span></div>
+                    <div class="tool-cta"><button class="btn-primary" onclick="window.open('https://clickup.com', '_blank')">Open ClickUp</button></div>
+                </div>
+
+                <div class="tool-panel" id="monday">
+                    <h4>Monday.com — Cross-Team Work OS</h4>
+                    <p class="intro">Monday.com connects planning, documentation, and execution across teams in a single workspace.</p>
+                    <div class="tool-features">
+                        <div class="tool-feature" data-tool="monday" tabindex="0">
+                            <div class="icon"><i class="fas fa-book"></i></div>
+                            <div>
+                                <strong>Docs & Boards</strong>
+                                <div class="sub">Knowledge and work tracking together.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="monday" tabindex="0">
+                            <div class="icon"><i class="fas fa-search"></i></div>
+                            <div>
+                                <strong>Dashboards</strong>
+                                <div class="sub">Real-time operational visibility</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="monday" tabindex="0">
+                            <div class="icon"><i class="fas fa-users"></i></div>
+                            <div>
+                                <strong>Team Workspaces</strong>
+                                <div class="sub">Work organised by teams and programs.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="monday" tabindex="0">
+                            <div class="icon"><i class="fas fa-link"></i></div>
+                            <div>
+                                <strong>Integrations</strong>
+                                <div class="sub">Connected with enterprise tools.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-badges"><span class="badge">PMO</span><span class="badge">Dashboards</span><span class="badge">Work OS</span></div>
+                    <div class="tool-cta"><button class="btn-primary" onclick="window.open('https://monday.com', '_blank')">View Monday.com</button></div>
+                </div>
+
+                <div class="tool-panel" id="asana">
+                    <h4>Asana — Portfolio & Initiative Management</h4>
+                    <p class="intro">Asana gives leadership clear visibility into initiatives, priorities, and progress.</p>
+                    <div class="tool-features">
+                        <div class="tool-feature" data-tool="asana" tabindex="0">
+                            <div class="icon"><i class="fas fa-tasks"></i></div>
+                            <div>
+                                <strong>Task Structure</strong>
+                                <div class="sub">Dependencies and ownership clearly defined.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="asana" tabindex="0">
+                            <div class="icon"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <strong>Portfolios</strong>
+                                <div class="sub">Track progress across initiatives.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="asana" tabindex="0">
+                            <div class="icon"><i class="fas fa-cogs"></i></div>
+                            <div>
+                                <strong>Workflow Rules</strong>
+                                <div class="sub">Automations reduce coordination effort and manual updates.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="asana" tabindex="0">
+                            <div class="icon"><i class="fas fa-link"></i></div>
+                            <div>
+                                <strong>Integrations</strong>
+                                <div class="sub">Connected with delivery tools.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-badges"><span class="badge">Tasks</span><span class="badge">Portfolios</span><span class="badge">Programs</span></div>
+                    <div class="tool-cta"><button class="btn-primary" onclick="window.open('https://asana.com', '_blank')">Open Asana</button></div>
+                </div>
+
+                <div class="tool-panel" id="github">
+                    <h4>GitHub — Engineering Control Plane</h4>
+                    <p class="intro">GitHub underpins our engineering workflows with CI/CD, security checks, and release controls.
+            </p>
+            </p></p>
+                    <div class="tool-features">
+                        <div class="tool-feature" data-tool="github" tabindex="0">
+                            <div class="icon"><i class="fab fa-github"></i></div>
+                            <div>
+                                <strong>Projects & Traceability</strong>
+                                <div class="sub">Commits, pull requests, and releases stay fully linked.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="github" tabindex="0">
+                            <div class="icon"><i class="fas fa-play-circle"></i></div>
+                            <div>
+                                <strong>CI/CD Automation</strong>
+                                <div class="sub">Automated build and deployment pipelines.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="github" tabindex="0">
+                            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                            <div>
+                                <strong>Security</strong>
+                                <div class="sub">Automated scanning and policy enforcement.</div>
+                            </div>
+                        </div>
+                        <div class="tool-feature" data-tool="github" tabindex="0">
+                            <div class="icon"><i class="fas fa-code-branch"></i></div>
+                            <div>
+                                <strong>Release Controls</strong>
+                                <div class="sub">Protected branches and PR rules.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-badges"><span class="badge">CI/CD</span><span class="badge">PRs</span><span class="badge">Actions</span></div>
+                    <div class="tool-cta"><button class="btn-primary" onclick="window.open('https://github.com', '_blank')">Open GitHub</button></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+                <script>
+                (function(){
+                    const pm = document.getElementById('pmModal');
+                    if (!pm) return;
+
+                    // Close when clicking outside content (overlay)
+                    pm.addEventListener('click', function(e){
+                        if (e.target === pm) {
+                            pm.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+
+                    // Close with Escape
+                    document.addEventListener('keydown', function(e){
+                        if (e.key === 'Escape' && pm.classList.contains('active')) {
+                            pm.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+
+                    // Make feature items interactive (toggle active state)
+                    document.querySelectorAll('.tool-feature').forEach(item => {
+                        item.addEventListener('click', function(){ this.classList.toggle('active'); });
+                        item.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.classList.toggle('active'); } });
+                    });
+                })();
+                </script>
+            </body>
+            </html>
