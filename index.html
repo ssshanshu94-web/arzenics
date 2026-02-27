@@ -468,6 +468,301 @@
         .reveal { position: relative; transform: translateY(50px); opacity: 0; transition: all 0.8s ease; }
         .reveal.active { transform: translateY(0); opacity: 1; }
 
+        /* ================= CASE STUDY POPUP ================= */
+        .gallery-item { cursor: pointer; }
+
+        .cs-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(0px);
+        }
+
+        .cs-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        .cs-modal {
+            background: #111;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 820px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(60px) scale(0.95);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255,77,77,0.15);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        .cs-overlay.open .cs-modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        /* Modal Header */
+        .cs-header {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cs-header-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 8s ease;
+        }
+
+        .cs-overlay.open .cs-header-img { transform: scale(1.05); }
+
+        .cs-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(17,17,17,0.98) 100%);
+        }
+
+        .cs-header-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 30px 36px 24px;
+        }
+
+        .cs-industry-badge {
+            display: inline-block;
+            background: rgba(255,77,77,0.15);
+            border: 1px solid rgba(255,77,77,0.5);
+            color: #ff4d4d;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 14px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+        }
+
+        .cs-project-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cs-meta-row {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .cs-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cs-meta-item i { color: #ff4d4d; font-size: 0.8rem; }
+
+        /* Modal Body */
+        .cs-body {
+            overflow-y: auto;
+            padding: 30px 36px 36px;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: #ff4d4d #1a1a1a;
+        }
+
+        .cs-body::-webkit-scrollbar { width: 4px; }
+        .cs-body::-webkit-scrollbar-track { background: #1a1a1a; }
+        .cs-body::-webkit-scrollbar-thumb { background: #ff4d4d; border-radius: 2px; }
+
+        .cs-section {
+            margin-bottom: 28px;
+            animation: fadeSlideUp 0.5s ease both;
+        }
+
+        .cs-section:nth-child(1) { animation-delay: 0.1s; }
+        .cs-section:nth-child(2) { animation-delay: 0.2s; }
+        .cs-section:nth-child(3) { animation-delay: 0.3s; }
+        .cs-section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cs-section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .cs-section-label .label-icon {
+            width: 30px; height: 30px;
+            background: rgba(255,77,77,0.1);
+            border: 1px solid rgba(255,77,77,0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff4d4d;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .cs-section-label h4 {
+            color: #ff4d4d;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .cs-section p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            padding-left: 40px;
+        }
+
+        .cs-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(255,77,77,0.3), transparent);
+            margin-bottom: 28px;
+        }
+
+        /* Tech Stack */
+        .cs-tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding-left: 40px;
+            margin-top: 4px;
+        }
+
+        .cs-tech-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .cs-tech-tag:hover {
+            background: rgba(255,77,77,0.1);
+            border-color: rgba(255,77,77,0.4);
+            color: #ff4d4d;
+        }
+
+        /* Impact Grid */
+        .cs-impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding-left: 40px;
+        }
+
+        .cs-impact-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cs-impact-item:hover {
+            border-color: rgba(255,77,77,0.3);
+            background: rgba(255,77,77,0.05);
+            transform: translateY(-2px);
+        }
+
+        .cs-impact-num {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ff4d4d;
+            font-family: 'Lexend Giga', sans-serif;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .cs-impact-label {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Close Button */
+        .cs-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px; height: 36px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+
+        .cs-close:hover {
+            background: #ff4d4d;
+            border-color: #ff4d4d;
+            transform: rotate(90deg);
+        }
+
+        /* Gallery item click hint */
+        .gallery-overlay .click-hint {
+            margin-top: 10px;
+            font-size: 0.72rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
@@ -482,7 +777,12 @@
             nav ul li a { color: #333; }
             .hero h1 { font-size: 2.2rem; }
             .split-layout { flex-direction: column; }
-            .services-grid { grid-template-columns: 1fr; }
+            .cs-impact-grid { grid-template-columns: repeat(2, 1fr); }
+            .cs-body { padding: 20px; }
+            .cs-header-content { padding: 20px; }
+            .cs-project-title { font-size: 1.4rem; }
+            .cs-section p, .cs-tech-grid, .cs-impact-grid { padding-left: 0; }
+
             .stats-container { flex-direction: column; gap: 40px; }
         }
     </style>
@@ -549,25 +849,28 @@
         <div class="container">
             <h2 class="section-title white-text reveal">Featured Projects</h2>
             <div class="gallery-grid">
-                <div class="gallery-item reveal">
+                <div class="gallery-item reveal" data-project="jira">
                     <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" alt="Jira Integration">
                     <div class="gallery-overlay">
                         <h3>Jira Integration</h3>
                         <p>Workflow & Project Optimization</p>
+                        <span class="click-hint"> View Case Study</span>
                     </div>
                 </div>
-                <div class="gallery-item reveal" style="transition-delay: 0.1s;">
+                <div class="gallery-item reveal" style="transition-delay: 0.1s;" data-project="cloud">
                     <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Cloud Migration">
                     <div class="gallery-overlay">
                         <h3>Cloud Migration</h3>
                         <p>Scalable Infrastructure & DevOps</p>
+                        <span class="click-hint"> View Case Study</span>
                     </div>
                 </div>
-                <div class="gallery-item reveal" style="transition-delay: 0.2s;">
+                <div class="gallery-item reveal" style="transition-delay: 0.2s;" data-project="qa">
                     <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80" alt="QA Automation">
                     <div class="gallery-overlay">
                         <h3>QA Automation</h3>
                         <p>Software Testing & Quality Control</p>
+                        <span class="click-hint"> View Case Study</span>
                     </div>
                 </div>
             </div>
@@ -692,7 +995,184 @@
         </div>
     </div>
 
+    <!-- Case Study Popup -->
+    <div class="cs-overlay" id="csOverlay">
+        <div class="cs-modal" id="csModal">
+            <div class="cs-header">
+                <img class="cs-header-img" id="csHeaderImg" src="" alt="">
+                <div class="cs-header-overlay"></div>
+                <div class="cs-header-content">
+                    <div class="cs-industry-badge" id="csIndustry">Industry</div>
+                    <h2 class="cs-project-title" id="csTitle">Project Name</h2>
+                    <div class="cs-meta-row">
+                        <div class="cs-meta-item"><i class="fas fa-layer-group"></i><span id="csMeta1"></span></div>
+                        <div class="cs-meta-item"><i class="fas fa-users"></i><span id="csMeta2"></span></div>
+                        <div class="cs-meta-item"><i class="fas fa-calendar-alt"></i><span id="csMeta3"></span></div>
+                    </div>
+                </div>
+                <button class="cs-close" id="csClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cs-body">
+
+                <div class="cs-section">
+                    <div class="cs-section-label">
+                        <div class="label-icon"><i class="fas fa-exclamation"></i></div>
+                        <h4>The Problem</h4>
+                    </div>
+                    <p id="csProblem"></p>
+                </div>
+
+                <div class="cs-divider"></div>
+
+                <div class="cs-section">
+                    <div class="cs-section-label">
+                        <div class="label-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h4>Our Solution</h4>
+                    </div>
+                    <p id="csSolution"></p>
+                </div>
+
+                <div class="cs-divider"></div>
+
+                <div class="cs-section">
+                    <div class="cs-section-label">
+                        <div class="label-icon"><i class="fas fa-code"></i></div>
+                        <h4>Tech Stack</h4>
+                    </div>
+                    <div class="cs-tech-grid" id="csTechGrid"></div>
+                </div>
+
+                <div class="cs-divider"></div>
+
+                <div class="cs-section">
+                    <div class="cs-section-label">
+                        <div class="label-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Impact & Results</h4>
+                    </div>
+                    <div class="cs-impact-grid">
+                        <div class="cs-impact-item">
+                            <span class="cs-impact-num" id="csImpact1Num"></span>
+                            <span class="cs-impact-label" id="csImpact1Label"></span>
+                        </div>
+                        <div class="cs-impact-item">
+                            <span class="cs-impact-num" id="csImpact2Num"></span>
+                            <span class="cs-impact-label" id="csImpact2Label"></span>
+                        </div>
+                        <div class="cs-impact-item">
+                            <span class="cs-impact-num" id="csImpact3Num"></span>
+                            <span class="cs-impact-label" id="csImpact3Label"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // ================= CASE STUDY DATA =================
+        const projectData = {
+            jira: {
+                title: "Jira Integration & Automation",
+                industry: "Project Management",
+                image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80",
+                meta: ["Workflow Optimization", "Team of 4", "6 Weeks"],
+                problem: "Our client, a mid-sized software firm, was struggling with disconnected project workflows. Tasks were being tracked manually in spreadsheets, leading to missed deadlines, duplicated work, and a complete lack of real-time visibility for stakeholders. The team of 30+ developers had no unified system for sprint planning or bug tracking.",
+                solution: "We designed and implemented a fully custom Jira integration tailored to the client's existing processes. This included custom issue types, automated workflows using Jira Automation rules, a real-time Confluence dashboard for leadership visibility, and Slack notifications for critical ticket updates. We also conducted team onboarding sessions to ensure 100% adoption.",
+                tech: ["Jira Cloud", "Confluence", "Jira Automation", "Slack API", "REST API", "Webhooks", "Python", "Postman"],
+                impact: [
+                    { num: "40%", label: "Faster Delivery" },
+                    { num: "0", label: "Missed Deadlines" },
+                    { num: "100%", label: "Team Adoption" },
+                ]
+            },
+            cloud: {
+                title: "Cloud Migration & Infrastructure",
+                industry: "Infrastructure & DevOps",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+                meta: ["Cloud Architecture", "Team of 6", "10 Weeks"],
+                problem: "A growing e-commerce platform was running on aging on-premise servers with frequent downtime during peak sales events. The infrastructure could not scale to handle traffic spikes, resulting in lost revenue and a damaged brand reputation. Manual deployments were also causing production errors.",
+                solution: "We architected and executed a full cloud migration to AWS, moving their monolithic application to a containerized microservices model. We set up auto-scaling EC2 instances, an S3-backed CDN for static assets, RDS for managed database services, and a full CI/CD pipeline with GitHub Actions and CodeDeploy. Zero-downtime deployment was achieved using blue-green strategies.",
+                tech: ["AWS EC2", "S3", "RDS", "Docker", "Kubernetes", "GitHub Actions", "Terraform", "Nginx", "CloudFront"],
+                impact: [
+                    { num: "99.9%", label: "Uptime Achieved" },
+                    { num: "3x", label: "Faster Deployment" },
+                    { num: "35%", label: "Cost Reduction" },
+                ]
+            },
+            qa: {
+                title: "QA Automation Framework",
+                industry: "Software Testing",
+                image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80",
+                meta: ["Quality Assurance", "Team of 3", "8 Weeks"],
+                problem: "A SaaS product company was releasing updates weekly but had no automated testing in place. Every release required 3–4 days of manual regression testing by two QA engineers, delaying feature launches and causing significant business bottlenecks. Several critical bugs had reached production, eroding customer trust.",
+                solution: "We built a robust end-to-end test automation framework from scratch using Selenium and Pytest. This covered 200+ test cases across all critical user journeys. We integrated the test suite into their CI/CD pipeline so every pull request triggered automated regression tests. We also added API test coverage using Postman/Newman and a real-time Allure reporting dashboard.",
+                tech: ["Selenium", "Pytest", "Python", "Postman", "Newman", "GitHub Actions", "Allure Reports", "Jenkins", "JIRA"],
+                impact: [
+                    { num: "85%", label: "Test Coverage" },
+                    { num: "4 Days", label: "Saved Per Release" },
+                    { num: "0", label: "Production Bugs" },
+                ]
+            }
+        };
+
+        function openCaseStudy(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            // Header
+            document.getElementById('csHeaderImg').src = data.image;
+            document.getElementById('csIndustry').textContent = data.industry;
+            document.getElementById('csTitle').textContent = data.title;
+            document.getElementById('csMeta1').textContent = data.meta[0];
+            document.getElementById('csMeta2').textContent = data.meta[1];
+            document.getElementById('csMeta3').textContent = data.meta[2];
+
+            // Body text
+            document.getElementById('csProblem').textContent = data.problem;
+            document.getElementById('csSolution').textContent = data.solution;
+
+            // Tech tags — only the tags themselves are dynamic
+            const techGrid = document.getElementById('csTechGrid');
+            techGrid.innerHTML = '';
+            data.tech.forEach(t => {
+                const span = document.createElement('span');
+                span.className = 'cs-tech-tag';
+                span.textContent = t;
+                techGrid.appendChild(span);
+            });
+
+            // Impact numbers
+            data.impact.forEach((item, i) => {
+                document.getElementById(`csImpact${i+1}Num`).textContent = item.num;
+                document.getElementById(`csImpact${i+1}Label`).textContent = item.label;
+            });
+
+            document.getElementById('csOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCaseStudy() {
+            document.getElementById('csOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('csClose').addEventListener('click', closeCaseStudy);
+        document.getElementById('csOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeCaseStudy();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCaseStudy();
+        });
+
+        document.querySelectorAll('.gallery-item[data-project]').forEach(item => {
+            item.addEventListener('click', function() {
+                openCaseStudy(this.getAttribute('data-project'));
+            });
+        });
+    </script>
+
     <script>
         (function() { emailjs.init("eb9WpF0xxAZ0ZAlDI"); })();
 
